@@ -1,37 +1,169 @@
 import tkinter as tk
 from tkinter import ttk
+import json
+
 
 
 
 def openInfoFile():
-    with open('info.txt', 'r') as x:
-        for line in x:
-            (key, val) = line.rstrip("\n").split("=")
-            cInfo_d[key] = val
+    global cInfo_d
+    with open('info.json', 'r') as o:
+        try:
+            cInfo_d = json.load(o)
 
+            cName_input.insert(tk.END, cInfo_d('Name'))
+            cClass_input.insert(tk.END, cInfo_d('Class'))
+            cLevel_input.insert(tk.END, cInfo_d('Level'))
+            cRace_input.insert(tk.END, cInfo_d('Race'))
+            cExperience_input.insert(tk.END, cInfo_d('Experience_Points'))
+            pBonus_input.insert(tk.END, cInfo_d('Proficiency_Bonus'))
+            pStr_input.insert(tk.END, cInfo_d('Strength'))
+            pStr_ST_Num.insert(tk.END, cInfo_d('Str_Saving_Throw'))
+            pAthletics_Num.insert(tk.END, cInfo_d('Athletics'))
+            pDex_input.insert(tk.END, cInfo_d('Dexterity'))
+            pDex_ST_Num.insert(tk.END, cInfo_d('Dex_Saving_Throw'))
+            pAcrobatics_Num.insert(tk.END, cInfo_d('Acrobatics'))
+            pSlight_of_Hand_Num.insert(tk.END, cInfo_d('Slight_of_Hand'))
+            pStealth_Num.insert(tk.END, cInfo_d('Stealth'))
+            pCon_input.insert(tk.END, cInfo_d('Constitution'))
+            pCon_ST_Num.insert(tk.END, cInfo_d('Con_Saving_Throw'))
+            pInt_input.insert(tk.END, cInfo_d('Intelligence'))
+            pInt_ST_Num.insert(tk.END, cInfo_d('Int_Saving_Throw'))
+            pArcana_Num.insert(tk.END, cInfo_d('Arcana'))
+            pHistory_Num.insert(tk.END, cInfo_d('History'))
+            pInvestigation_Num.insert(tk.END, cInfo_d('Investigation'))
+            pNature_Num.insert(tk.END, cInfo_d('Nature'))
+            pReligion_Num.insert(tk.END, cInfo_d('Religion'))
+            pWis_input.insert(tk.END, cInfo_d('Wisdom'))
+            pWis_ST_Num.insert(tk.END, cInfo_d('Wis_Saving_Throw'))
+            pAnimal_Handling_Num.insert(tk.END, cInfo_d('Animal_Handling'))
+            pInsight_Num.insert(tk.END, cInfo_d('Insight'))
+            pMedicine_Num.insert(tk.END, cInfo_d('Medicine'))
+            pPerception_Num.insert(tk.END, cInfo_d('Perception'))
+            pSurvival_Num.insert(tk.END, cInfo_d('Survival'))
+            pChr_input.insert(tk.END, cInfo_d('Charisma'))
+            pChr_ST_Num.insert(tk.END, cInfo_d('Chr_Saving_Throw'))
+            pDeception_Num.insert(tk.END, cInfo_d('Deception'))
+            pIntimidation_Num.insert(tk.END, cInfo_d('Intimidation'))
+            pPerception_Num.insert(tk.END, cInfo_d('Performance'))
+            pPersuasion_Num.insert(tk.END, cInfo_d('Persuasion'))
+            pPassiveWisdom_Num.insert(tk.END, cInfo_d('Passive_Wisdom'))
+            pAC_input.insert(tk.END, cInfo_d('AC'))
+            ACdexModifier_input.insert(tk.END, cInfo_d('Dexterity_Modifier'))
+            ACarmor_input.insert(tk.END, cInfo_d('Armor'))
+            ACshield_input.insert(tk.END, cInfo_d('Shield'))
+            ACMisc_input.insert(tk.END, cInfo_d('Misc.'))
+            pInitiative_input.insert(tk.END, cInfo_d('Initiative'))
+            pSpeed_input.insert(tk.END, cInfo_d('Speed'))
+            hpm_label_input.insert(tk.END, cInfo_d('Hit_Points_Maximum'))
+            chp_input.insert(tk.END, cInfo_d('Current_Hit_Points'))
+            totalHD_input.insert(tk.END, cInfo_d('Total_hd'))
+            hd_input.insert(tk.END, cInfo_d('Hit_Dice'))
+            pWeapon1_Num.insert(tk.END, cInfo_d('Weapon1'))
+            pWeapon1Range_Num.insert(tk.END, cInfo_d('W1_Range'))
+            pWeapon1Type_Num.insert(tk.END, cInfo_d('W1_Type'))
+            pWeapon1AB_Num.insert(tk.END, cInfo_d('W1_AttackBonus'))
+            pWeapon1Damage_Num.insert(tk.END, cInfo_d('Weapon1_Damage'))
+            pWeapon2_Num.insert(tk.END, cInfo_d('Weapon2'))
+            pWeapon2Range_Num.insert(tk.END, cInfo_d('W2_Range'))
+            pWeapon2Type_Num.insert(tk.END, cInfo_d('W2_Type'))
+            pWeapon2AB_Num.insert(tk.END, cInfo_d('W2_AttackBonus'))
+            pWeapon2Damage_Num.insert(tk.END, cInfo_d('Weapon2_Damage'))
+            pWeapon3_Num.insert(tk.END, cInfo_d('Weapon3'))
+            pWeapon3Range_Num.insert(tk.END, cInfo_d('W3_Range'))
+            pWeapon3Type_Num.insert(tk.END, cInfo_d('W3_Type'))
+            pWeapon3AB_Num.insert(tk.END, cInfo_d('W3_AttackBonus'))
+            pWeapon3Damage_Num.insert(tk.END, cInfo_d('Weapon3_Damage'))
+            items_text1.insert(tk.END, cInfo_d('Items_Text1'))
+            items_text2.insert(tk.END, cInfo_d('Items_Text2'))
+            features_Traits_text.insert(tk.END, cInfo_d('Features/Traits'))
+            opl_Traits_text.insert(tk.END, cInfo_d('Other_Proficiencies/Languages'))
+        except:
+            cInfo_d = {}
+            pass
 
 
 def savePlayerSheet():
-    cName_inputValue = cName_input.get("1.0",tk.END)
-    cInfo_d.update(Name=str(cName_inputValue))
-    print(cName_inputValue)
+    cInfo_d.update(Name=str(cName_input.get()),
+                   Class=str(cClass_input.get()),
+                   Level=str(cLevel_input.get()),
+                   Race=str(cRace_input.get()),
+                   Experience_Points=str(cExperience_input.get()),
+                   Proficiency_Bonus=str(pBonus_input.get()),
+                   Strength=str(pStr_input.get()),
+                   StrST=str(pStr_ST_Num.get()),
+                   Athletics=str(pAthletics_Num.get()),
+                   Dexterity=str(pDex_input.get()),
+                   Dex_Saving_Throw=str(pDex_ST_Num.get()),
+                   Acrobatics=str(pAcrobatics_Num.get()),
+                   Slight_of_Hand=str(pSlight_of_Hand_Num.get()),
+                   Stealth=str(pStealth_Num.get()),
+                   Constitution=str(pCon_input.get()),
+                   Con_Saving_Throw=str(pCon_ST_Num.get()),
+                   Intelligence=str(pInt_input.get()),
+                   Int_Saving_Throw=str(pInt_ST_Num.get()),
+                   Arcana=str(pArcana_Num.get()),
+                   History=str(pHistory_Num.get()),
+                   Investigation=str(pInvestigation_Num.get()),
+                   Nature=str(pNature_Num.get()),
+                   Religion=str(pReligion_Num.get()),
+                   Wisdom=str(pWis_input.get()),
+                   Wis_Saving_Throw=str(pWis_ST_Num.get()),
+                   Animal_Handling=str(pAnimal_Handling_Num.get()),
+                   Insight=str(pInsight_Num.get()),
+                   Medicine=str(pMedicine_Num.get()),
+                   Perception=str(pPerception_Num.get()),
+                   Survival=str(pSurvival_Num.get()),
+                   Charisma=str(pChr_input.get()),
+                   Chr_Saving_Throw=str(pChr_ST_Num.get()),
+                   Deception=str(pDeception_Num.get()),
+                   Intimidation=str(pIntimidation_Num.get()),
+                   Performance=str(pPerformance_Num.get()),
+                   Persuasion=str(pPersuasion_Num.get()),
+                   PassiveWisdom=str(pPassiveWisdom_Num.get()),
+                   ArmorClass=str(pAC_input.get()),
+                   AC_Dexterity_Modifier=str(ACdexModifier_input.get()),
+                   AC_Armor=str(ACarmor_input.get()),
+                   AC_Shield=str(ACshield_input.get()),
+                   AC_Misc=str(ACMisc_input.get()),
+                   Initiative=str(pInitiative_input.get()),
+                   Speed=str(pSpeed_input.get()),
+                   Health_Maximum=str(hpm_label_input.get()),
+                   Current_Health=str(chp_input.get()),
+                   Total_Hit_Dice=str(totalHD_input.get()),
+                   Hit_Dice=str(hd_input.get()),
+                   Weapon1=str(pWeapon1_Num.get()),
+                   Weapon1Range=str(pWeapon1Range_Num.get()),
+                   Weapon1Type=str(pWeapon1Type_Num.get()),
+                   Weapon1AttackBonus=str(pWeapon1AB_Num.get()),
+                   Weapon1Damage=str(pWeapon1Damage_Num.get()),
+                   Weapon2=str(pWeapon2_Num.get()),
+                   Weapon2Range=str(pWeapon2Range_Num.get()),
+                   Weapon2Type=str(pWeapon2Type_Num.get()),
+                   Weapon2AttackBonus=str(pWeapon2AB_Num.get()),
+                   Weapon2Damage=str(pWeapon2Damage_Num.get()),
+                   Weapon3=str(pWeapon3_Num.get()),
+                   Weapon3Range=str(pWeapon3Range_Num.get()),
+                   Weapon3Type=str(pWeapon3Type_Num.get()),
+                   Weapon3AttackBonus=str(pWeapon3AB_Num.get()),
+                   Weapon3Damage=str(pWeapon3Damage_Num.get()),
+                   Items_Text_Box=str(items_text1.get(1.0, "end-1c")),
+                   Items_Text_Box2=str(items_text2.get(1.0, "end-1c")),
+                   Featires_Traits_Box=str(features_Traits_text.get(1.0, "end-1c")),
+                   OtherProficienciesLanguages_Box=str(opl_Traits_text.get(1.0, "end-1c"))
 
-    with open('info.txt', 'w') as s:
-        for key,value in cInfo_d.items():
-            s.write('%s=%s\n' % (key,value))
-            s.close()
+    )   
+
+    json.dump(cInfo_d, open('info.json', 'w'), indent=2)
 
 
 
 
-
-
-cInfo_d = {}
 
 window = tk.Tk()
 window.title("Character Sheet")
-openInfoFile()
-print(cInfo_d)
+
+
 
 notebook = ttk.Notebook(window)
 
@@ -68,47 +200,41 @@ generalInfo_frame = tk.Frame(dndPlayerSheet)
 generalInfo_frame.grid(row=0, column=0, padx=5, pady=(5,0), columnspan=3, sticky="news")
 
 #character General information
-cName = tk.Label(generalInfo_frame, text = "Name", height=1)
+cName = tk.Label(generalInfo_frame, text = "Name")
 cName.grid(row=0, column=0, rowspan=2)
-cName_input = tk.Text(generalInfo_frame, width=20, height=1, font=('', 32))
+cName_input = tk.Entry(generalInfo_frame, width=20, font=('', 32))
 cName_input.grid(row=0, column=1, rowspan=2, padx=5, pady=5)
-cName_input.insert(tk.END, cInfo_d.get('Name'))
 
 cClass = tk.Label(generalInfo_frame, text="Class")
 cClass.grid(row=0, column=2)
-cClass_input = tk.Text(generalInfo_frame, width=20, height=1)
+cClass_input = tk.Entry(generalInfo_frame, width=20)
 cClass_input.grid(row=0, column=3, padx=5, pady=5)
-#cClass_input.insert(tk.END, cInfo_d.get('Class'))
 
 cLevel = tk.Label(generalInfo_frame, text="Level")
 cLevel.grid(row=0, column=4)
-cLevel_input = tk.Text(generalInfo_frame, width=3, height=1)
+cLevel_input = tk.Entry(generalInfo_frame, width=3)
 cLevel_input.grid(row=0, column=5, padx=5, pady=5)
-#cLevel_input.insert(tk.END, cInfo_d.get('Level'))
 
 cRace = tk.Label(generalInfo_frame, text="Race")
 cRace.grid(row=1, column=2)
-cRace_input = tk.Text(generalInfo_frame, width=20, height=1)
+cRace_input = tk.Entry(generalInfo_frame, width=20)
 cRace_input.grid(row=1, column=3, padx=5, pady=5)
-#cRace_input.insert(tk.END, cInfo_d.get('Race'))
 
 cExperience = tk.Label(generalInfo_frame, text="Experience Points")
 cExperience.grid(row=1, column=4)
-cExperience_input = tk.Text(generalInfo_frame, width=10, height=1)
+cExperience_input = tk.Entry(generalInfo_frame, width=10)
 cExperience_input.grid(row=1, column=5, padx=5, pady=5)
-#cExperience_input.insert(tk.END, cInfo_d.get('Experience_Points'))
-
 
 ########################################################################################################################
 
 #Character Stats frame
 stats_Frame = tk.Frame(dndPlayerSheet)
-stats_Frame.grid(row=1, column=0, padx=(5,0), pady=5, rowspan=100, sticky="news")
+stats_Frame.grid(row=1, column=0, padx=(5,0), pady=5, rowspan=4, sticky="news")
 
 #Character Stats
 pBonus = tk.Label(stats_Frame, text="Proficiency Bonus")
 pBonus.grid(row=0, column=0, padx=5, pady=5)
-pBonus_input = tk.Text(stats_Frame, width=2, height=1)
+pBonus_input = tk.Entry(stats_Frame, width=2)
 pBonus_input.grid(row=0, column=1, padx=5, pady=5)
 pInpiration = tk.Checkbutton(stats_Frame, text="Inspiration")
 pInpiration.grid(row=1, column=0, padx=5, pady=5, columnspan=2)
@@ -120,17 +246,16 @@ pStrength_Frame.grid(row=2, column=0, columnspan=2, padx=10, pady=2)
 pRolls = tk.Button(pStrength_Frame, text = "Roll")
 pRolls.grid(row=4, column=0, pady=(5), padx=5, sticky="news")
 
-pStr_input = tk.Text(pStrength_Frame, height=1, font=("", 64), width=2)
+pStr_input = tk.Entry(pStrength_Frame, font=("", 64), width=2)
 pStr_input.grid(row=0, column=0, rowspan=4, padx=5, pady=(5,0))
 
 pStr_ST = tk.Checkbutton(pStrength_Frame, text = "Saving Throw")
 pStr_ST.grid(row=0, column=1, sticky="W")
-pStr_ST_Num = tk.Text(pStrength_Frame, width=2, height=1)
-pStr_ST_Num.insert(tk.END, "22") #How to save the data inputed by the user *************************************
+pStr_ST_Num = tk.Entry(pStrength_Frame, width=2)
 pStr_ST_Num.grid(row=0, column=2, sticky="E", padx=15)
 pAthletics = tk.Checkbutton(pStrength_Frame, text = "Athletics")
 pAthletics.grid(row=1, column=1, sticky="W")
-pAthletics_Num = tk.Text(pStrength_Frame, width=2, height=1)
+pAthletics_Num = tk.Entry(pStrength_Frame, width=2)
 pAthletics_Num.grid(row=1, column=2, sticky="E", padx=15)
 
 #Character Dexterity Stats
@@ -140,24 +265,24 @@ pDexterity_Frame.grid(row=3, column=0, columnspan=2, padx=10, pady=2)
 pRolld = tk.Button(pDexterity_Frame, text = "Roll")
 pRolld.grid(row=4, column=0, pady=(5), padx=5, sticky="news")
 
-pDex_input = tk.Text(pDexterity_Frame, height=1, font=("", 64), width=2)
+pDex_input = tk.Entry(pDexterity_Frame, font=("", 64), width=2)
 pDex_input.grid(row=0, column=0, rowspan=4, padx=5)
 
 pDex_ST = tk.Checkbutton(pDexterity_Frame, text = "Saving Throw")
 pDex_ST.grid(row=0, column=1, sticky="W")
-pDex_ST_Num = tk.Text(pDexterity_Frame, width=2, height=1)
+pDex_ST_Num = tk.Entry(pDexterity_Frame, width=2)
 pDex_ST_Num.grid(row=0, column=2, sticky="E", padx=9)
 pAcrobatics = tk.Checkbutton(pDexterity_Frame, text = "Acrobatics")
 pAcrobatics.grid(row=1, column=1, sticky="W")
-pAcrobatics_Num = tk.Text(pDexterity_Frame, width=2, heigh=1)
+pAcrobatics_Num = tk.Entry(pDexterity_Frame, width=2)
 pAcrobatics_Num.grid(row=1, column=2, sticky="E", padx=9)
 pSlight_of_Hand = tk.Checkbutton(pDexterity_Frame, text = "Sleight of Hand")
 pSlight_of_Hand.grid(row=2, column=1, sticky="W")
-pSlight_of_Hand_Num = tk.Text(pDexterity_Frame, width=2, height=1)
+pSlight_of_Hand_Num = tk.Entry(pDexterity_Frame, width=2)
 pSlight_of_Hand_Num.grid(row=2, column=2, sticky="E", padx=9)
 pStealth = tk.Checkbutton(pDexterity_Frame, text = "Stealth")
 pStealth.grid(row=3, column=1, sticky="W")
-pStealth_Num = tk.Text(pDexterity_Frame, width=2, height=1)
+pStealth_Num = tk.Entry(pDexterity_Frame, width=2)
 pStealth_Num.grid(row=3, column=2, sticky="E", padx=9)
 
 #Players Constitution Stats
@@ -167,12 +292,12 @@ pConstitution_Frame.grid(row=4, column=0, columnspan=2, padx=10, pady=2)
 pRollcon = tk.Button(pConstitution_Frame, text = "Roll")
 pRollcon.grid(row=1, column=0, pady=(5), padx=5, sticky="news")
 
-pCon_input = tk.Text(pConstitution_Frame, height=1, font=("", 64), width=2)
+pCon_input = tk.Entry(pConstitution_Frame, font=("", 64), width=2)
 pCon_input.grid(row=0, column=0, padx=5)
 
 pCon_ST = tk.Checkbutton(pConstitution_Frame, text = "Saving Throw")
 pCon_ST.grid(row=0, column=1, sticky="W")
-pCon_ST_Num = tk.Text(pConstitution_Frame, width=2, height=1)
+pCon_ST_Num = tk.Entry(pConstitution_Frame, width=2)
 pCon_ST_Num.grid(row=0, column=2, sticky="E", padx=15)
 
 #Players Intelligence Stats
@@ -182,32 +307,32 @@ pIntelligence_Frame.grid(row=5, column=0, columnspan=2, padx=10, pady=2)
 pRolli = tk.Button(pIntelligence_Frame, text = "Roll")
 pRolli.grid(row=4, column=0, pady=5, padx=5, sticky="news")
 
-pInt_input = tk.Text(pIntelligence_Frame, height=1, font=("", 64), width=2)
+pInt_input = tk.Entry(pIntelligence_Frame, font=("", 64), width=2)
 pInt_input.grid(row=0, column=0, rowspan=4, padx=5)
 
 pInt_ST = tk.Checkbutton(pIntelligence_Frame, text = "Saving Throw")
 pInt_ST.grid(row=0, column=1, sticky="W")
-pInt_ST_Num = tk.Text(pIntelligence_Frame, width=2, height=1)
+pInt_ST_Num = tk.Entry(pIntelligence_Frame, width=2)
 pInt_ST_Num.grid(row=0, column=2, sticky="E", padx=15)
 pArcana = tk.Checkbutton(pIntelligence_Frame, text = "Arcana")
 pArcana.grid(row=1, column=1, sticky="W")
-pArcana_Num = tk.Text(pIntelligence_Frame, width=2, height=1)
+pArcana_Num = tk.Entry(pIntelligence_Frame, width=2)
 pArcana_Num.grid(row=1, column=2, sticky="E", padx=15)
 pHistory = tk.Checkbutton(pIntelligence_Frame, text = "History")
 pHistory.grid(row=2, column=1, sticky="W")
-pHistory_Num = tk.Text(pIntelligence_Frame, width=2, height=1)
+pHistory_Num = tk.Entry(pIntelligence_Frame, width=2)
 pHistory_Num.grid(row=2, column=2, sticky="E", padx=15)
 pInvestigation = tk.Checkbutton(pIntelligence_Frame, text = "Investigation")
 pInvestigation.grid(row=3, column=1, sticky="W")
-pInvestigation_Num = tk.Text(pIntelligence_Frame, width=2, height=1)
+pInvestigation_Num = tk.Entry(pIntelligence_Frame, width=2)
 pInvestigation_Num.grid(row=3, column=2, sticky="E", padx=15)
 pNature = tk.Checkbutton(pIntelligence_Frame, text = "Nature")
 pNature.grid(row=4, column=1, sticky="W")
-pNature_Num = tk.Text(pIntelligence_Frame, width=2, height=1)
+pNature_Num = tk.Entry(pIntelligence_Frame, width=2)
 pNature_Num.grid(row=4, column=2, sticky="E", padx=15)
 pReligion = tk.Checkbutton(pIntelligence_Frame, text = "Religion")
 pReligion.grid(row=5, column=1, sticky="W")
-pReligion_Num = tk.Text(pIntelligence_Frame, width=2, height=1)
+pReligion_Num = tk.Entry(pIntelligence_Frame, width=2)
 pReligion_Num.grid(row=5, column=2, sticky="E", padx=15)
 
 #Characters Wisdom Stats
@@ -217,32 +342,32 @@ pWisdom_Frame.grid(row=6, column=0, columnspan=2, padx=10, pady=2)
 pRollw = tk.Button(pWisdom_Frame, text = "Roll")
 pRollw.grid(row=4, column=0, padx=5, pady=5, sticky="news")
 
-pWis_input = tk.Text(pWisdom_Frame, height=1, font=("", 64), width=2)
+pWis_input = tk.Entry(pWisdom_Frame, font=("", 64), width=2)
 pWis_input.grid(row=0, column=0, rowspan=4, padx=5)
 
 pWis_ST = tk.Checkbutton(pWisdom_Frame, text = "Saving Throw")
 pWis_ST.grid(row=0, column=1, sticky="W")
-pWis_ST_Num = tk.Text(pWisdom_Frame, width=2, height=1)
+pWis_ST_Num = tk.Entry(pWisdom_Frame, width=2)
 pWis_ST_Num.grid(row=0, column=2, sticky="W", padx=(0,10))
 pAnimal_Handling = tk.Checkbutton(pWisdom_Frame, text = "Animal Handling")
 pAnimal_Handling.grid(row=1, column=1, sticky="W")
-pAnimal_Handling_Num = tk.Text(pWisdom_Frame, width=2, height=1)
+pAnimal_Handling_Num = tk.Entry(pWisdom_Frame, width=2)
 pAnimal_Handling_Num.grid(row=1, column=2, sticky="W")
 pInsight = tk.Checkbutton(pWisdom_Frame, text = "Insight")
 pInsight.grid(row=2, column=1, sticky="W")
-pInsight_Num = tk.Text(pWisdom_Frame, width=2, height=1)
+pInsight_Num = tk.Entry(pWisdom_Frame, width=2)
 pInsight_Num.grid(row=2, column=2, sticky="W")
 pMedicine = tk.Checkbutton(pWisdom_Frame, text = "Medicine")
 pMedicine.grid(row=3, column=1, sticky="W")
-pMedicine_Num = tk.Text(pWisdom_Frame, width=2, height=1)
+pMedicine_Num = tk.Entry(pWisdom_Frame, width=2)
 pMedicine_Num.grid(row=3, column=2, sticky="W")
 pPerception = tk.Checkbutton(pWisdom_Frame, text = "Perception")
 pPerception.grid(row=4, column=1, sticky="W")
-pPerception_Num = tk.Text(pWisdom_Frame, width=2, height=1)
+pPerception_Num = tk.Entry(pWisdom_Frame, width=2)
 pPerception_Num.grid(row=4, column=2, sticky="W")
 pSurvival = tk.Checkbutton(pWisdom_Frame, text = "Survival")
 pSurvival.grid(row=5, column=1, sticky="W")
-pSurvival_Num = tk.Text(pWisdom_Frame, width=2, height=1)
+pSurvival_Num = tk.Entry(pWisdom_Frame, width=2)
 pSurvival_Num.grid(row=5, column=2, sticky="W")
 
 
@@ -253,33 +378,33 @@ pCharisma_Frame.grid(row=7, column=0, columnspan=2, padx=10, pady=2)
 pRollc = tk.Button(pCharisma_Frame, text = "Roll")
 pRollc.grid(row=4, column=0, pady=(5), padx=5, sticky="news")
 
-pChr_input = tk.Text(pCharisma_Frame, height=1, font=("", 64), width=2)
+pChr_input = tk.Entry(pCharisma_Frame, font=("", 64), width=2)
 pChr_input.grid(row=0, column=0, rowspan=4, padx=5)
 
-pWis_ST = tk.Checkbutton(pCharisma_Frame, text = "Saving Throw")
-pWis_ST.grid(row=0, column=1, sticky="W")
-pWis_ST_Num = tk.Text(pCharisma_Frame, width=2, height=1)
-pWis_ST_Num.grid(row=0, column=2, sticky="E", padx=15)
+pChr_ST = tk.Checkbutton(pCharisma_Frame, text = "Saving Throw")
+pChr_ST.grid(row=0, column=1, sticky="W")
+pChr_ST_Num = tk.Entry(pCharisma_Frame, width=2)
+pChr_ST_Num.grid(row=0, column=2, sticky="E", padx=15)
 pDeception = tk.Checkbutton(pCharisma_Frame, text = "Deception")
 pDeception.grid(row=1, column=1, sticky="W")
-pDeception_Num = tk.Text(pCharisma_Frame, width=2, height=1)
+pDeception_Num = tk.Entry(pCharisma_Frame, width=2)
 pDeception_Num.grid(row=1, column=2, sticky="E", padx=15)
 pIntimidation = tk.Checkbutton(pCharisma_Frame, text = "Intimidation")
 pIntimidation.grid(row=2, column=1, sticky="W")
-pIntimidation_Num = tk.Text(pCharisma_Frame, width=2, height=1)
+pIntimidation_Num = tk.Entry(pCharisma_Frame, width=2)
 pIntimidation_Num.grid(row=2, column=2, sticky="E", padx=15)
 pPerformance = tk.Checkbutton(pCharisma_Frame, text = "Performance")
 pPerformance.grid(row=3, column=1, sticky="W")
-pPerformance_Num = tk.Text(pCharisma_Frame, width=2, height=1)
+pPerformance_Num = tk.Entry(pCharisma_Frame, width=2)
 pPerformance_Num.grid(row=3, column=2, sticky="E", padx=15)
 pPersuasion = tk.Checkbutton(pCharisma_Frame, text = "Persuasion")
 pPersuasion.grid(row=4, column=1, sticky="W")
-pPersuasion_Num = tk.Text(pCharisma_Frame, width=2, height=1)
+pPersuasion_Num = tk.Entry(pCharisma_Frame, width=2)
 pPersuasion_Num.grid(row=4, column=2, sticky="E", padx=15)
 
 pPassiveWisdom = tk.Label(stats_Frame, text="Passive Wisdom/Perception")
 pPassiveWisdom.grid(row=8, column=0, padx=5, pady=5)
-pPassiveWisdom_Num = tk.Text(stats_Frame, width=2, height=1)
+pPassiveWisdom_Num = tk.Entry(stats_Frame, width=2)
 pPassiveWisdom_Num.grid(row=8, column=1, padx=5, pady=15, sticky="W")
 
 ########################################################################################################################
@@ -296,47 +421,41 @@ ac_i_s_Frame.grid(row=1, column=1, padx=5, pady=(5,0), columnspan=2, sticky="new
 
 pAC = tk.Label(ac_i_s_Frame, text="Armor Class")
 pAC.grid(row=0, column=0, padx=5, pady=5)
-pAC_input = tk.Text(ac_i_s_Frame, height=1, font=("", 40), width=2)
+pAC_input = tk.Entry(ac_i_s_Frame, font=("", 40), width=2)
 pAC_input.grid(row=1, column=0, padx=5, pady=5)
 ACequalSign = tk.Label(ac_i_s_Frame, text=" = ")
 ACequalSign.grid(row=1, column=1)
 ACdexModifier = tk.Label(ac_i_s_Frame, text="Dexterity Modifier")
 ACdexModifier.grid(row=0, column=2)
-ACdexModifier_input = tk.Text(ac_i_s_Frame, height=1, width=2)
+ACdexModifier_input = tk.Entry(ac_i_s_Frame, width=2)
 ACdexModifier_input.grid(row=1, column=2)
 ACplus1 = tk.Label(ac_i_s_Frame, text=" + ")
 ACplus1.grid(row=1, column=3)
 ACarmor = tk.Label(ac_i_s_Frame, text="Armor")
 ACarmor.grid(row=0, column=4)
-ACarmor_input = tk.Text(ac_i_s_Frame, height=1, width=2)
+ACarmor_input = tk.Entry(ac_i_s_Frame, width=2)
 ACarmor_input.grid(row=1, column=4)
 ACplus2 = tk.Label(ac_i_s_Frame, text=" + ")
 ACplus2.grid(row=1, column=5)
 ACshield = tk.Label(ac_i_s_Frame, text="Shield")
 ACshield.grid(row=0, column=6)
-ACshield_input = tk.Text(ac_i_s_Frame, height=1, width=2)
-ACshield_input.grid(row=1, column=6)
-ACplus3 = tk.Label(ac_i_s_Frame, text=" + ")
-ACplus3.grid(row=1, column=7)
-ACshield = tk.Label(ac_i_s_Frame, text="Shield")
-ACshield.grid(row=0, column=6)
-ACshield_input = tk.Text(ac_i_s_Frame, height=1, width=2)
+ACshield_input = tk.Entry(ac_i_s_Frame, width=2)
 ACshield_input.grid(row=1, column=6)
 ACplus3 = tk.Label(ac_i_s_Frame, text=" + ")
 ACplus3.grid(row=1, column=7)
 ACMisc = tk.Label(ac_i_s_Frame, text="Misc.")
 ACMisc.grid(row=0, column=8)
-ACMisc_input = tk.Text(ac_i_s_Frame, height=1, width=2)
+ACMisc_input = tk.Entry(ac_i_s_Frame, width=2)
 ACMisc_input.grid(row=1, column=8)
 
-pInitiative = tk.Label(ac_i_s_Frame, text="Initiatve")
+pInitiative = tk.Label(ac_i_s_Frame, text="Initiative")
 pInitiative.grid(row=0, column=9, padx=(160, 0))
-pInitiative_input = tk.Text(ac_i_s_Frame, height=1, font=("", 40), width=2)
+pInitiative_input = tk.Entry(ac_i_s_Frame, font=("", 40), width=2)
 pInitiative_input.grid(row=1, column=9, padx=(160, 0))
 
 pSpeed = tk.Label(ac_i_s_Frame, text="Speed")
 pSpeed.grid(row=0, column=10, padx=20)
-pSpeed_input = tk.Text(ac_i_s_Frame, height=1, font=("", 40), width=2)
+pSpeed_input = tk.Entry(ac_i_s_Frame, font=("", 40), width=2)
 pSpeed_input.grid(row=1, column=10, padx=20)
 
 ########################################################################################################################
@@ -352,9 +471,9 @@ hitPoint_Frame.grid(row=0, column=0, columnspan=2, padx=10, pady=5)
 
 hpm_label = tk.Label(hitPoint_Frame, text="Hit Points Maximum")
 hpm_label.grid(row=0, column=0, sticky="E")
-hpm_label_input = tk.Text(hitPoint_Frame, height=1, width=4)
+hpm_label_input = tk.Entry(hitPoint_Frame, width=4)
 hpm_label_input.grid(row=0, column=1, sticky="W")
-chp_input = tk.Text(hitPoint_Frame, height=1, width=4, font=("", 64))
+chp_input = tk.Entry(hitPoint_Frame, width=4, font=("", 64))
 chp_input.grid(row=1, column=0, columnspan=2, padx=86)
 chp_label = tk.Label(hitPoint_Frame, text="Current Hit Points")
 chp_label.grid(row=2, column=0, columnspan=2)
@@ -363,11 +482,11 @@ chp_label.grid(row=2, column=0, columnspan=2)
 hd_Frame = tk.Frame(health_Frame)
 hd_Frame.grid(row=1, column=0, padx=5, pady=5)
 
-total_Label = tk.Label(hd_Frame, text="Total")
-total_Label.grid(row=0, column=0)
-total_input = tk.Text(hd_Frame, height=1, width=4)
-total_input.grid(row=0, column=1)
-hd_input = tk.Text(hd_Frame, height=1, width=3, font=("", 40))
+totalHD_Label = tk.Label(hd_Frame, text="Total")
+totalHD_Label.grid(row=0, column=0)
+totalHD_input = tk.Entry(hd_Frame, width=4)
+totalHD_input.grid(row=0, column=1)
+hd_input = tk.Entry(hd_Frame, width=3, font=("", 40))
 hd_input.grid(row=1, column=0, columnspan=2)
 hd_Label = tk.Label(hd_Frame, text="Hit Dice")
 hd_Label.grid(row=2, column=0, columnspan=2)
@@ -408,23 +527,23 @@ playerWeapon1.grid(row=0, column=0, padx=5, pady=5)
 
 pWeapon1 = tk.LabelFrame(playerWeapon1, text="Weapon/Spell")
 pWeapon1.grid(row=0, column=0, padx=(5,0))
-pWeapon1_Num = tk.Text(pWeapon1, width=20, height=1)
+pWeapon1_Num = tk.Entry(pWeapon1, width=20)
 pWeapon1_Num.pack(padx=5, pady=5)
 pWeapon1Range = tk.LabelFrame(playerWeapon1, text="Range")
 pWeapon1Range.grid(row=0, column=1, columnspan=2, padx=5)
-pWeapon1Range_Num = tk.Text(pWeapon1Range, width=20, height=1)
+pWeapon1Range_Num = tk.Entry(pWeapon1Range, width=20)
 pWeapon1Range_Num.pack(padx=5, pady=5)
 pWeapon1Type = tk.LabelFrame(playerWeapon1, text="Type")
 pWeapon1Type.grid(row=1, column=0, padx=(5,0), pady=5)
-pWeapon1Type_Num = tk.Text(pWeapon1Type, width=20, height=1)
+pWeapon1Type_Num = tk.Entry(pWeapon1Type, width=20)
 pWeapon1Type_Num.pack(padx=5, pady=5)
 pWeapon1AB = tk.LabelFrame(playerWeapon1, text="Attack Bonus")
 pWeapon1AB.grid(row=1, column=1)
-pWeapon1AB_Num = tk.Text(pWeapon1AB, width=10, height=1)
+pWeapon1AB_Num = tk.Entry(pWeapon1AB, width=10)
 pWeapon1AB_Num.pack(padx=5, pady=5)
 pWeapon1Damage = tk.LabelFrame(playerWeapon1, text="Damage")
 pWeapon1Damage.grid(row=1, column=2)
-pWeapon1Damage_Num = tk.Text(pWeapon1Damage, width=7, height=1)
+pWeapon1Damage_Num = tk.Entry(pWeapon1Damage, width=7)
 pWeapon1Damage_Num.pack(padx=5, pady=5)
 
 pWeapon1AttackButton = tk.Button(playerWeapon1, text="Attack")
@@ -436,23 +555,23 @@ playerWeapon2.grid(row=1, column=0, padx=5, pady=5)
 
 pWeapon2 = tk.LabelFrame(playerWeapon2, text="Weapon/Spell")
 pWeapon2.grid(row=2, column=0, padx=(5,0))
-pWeapon2_Num = tk.Text(pWeapon2, width=20, height=1)
+pWeapon2_Num = tk.Entry(pWeapon2, width=20)
 pWeapon2_Num.pack(padx=5, pady=5)
 pWeapon2Range = tk.LabelFrame(playerWeapon2, text="Range")
 pWeapon2Range.grid(row=2, column=1, columnspan=2, padx=5)
-pWeapon2Range_Num = tk.Text(pWeapon2Range, width=20, height=1)
+pWeapon2Range_Num = tk.Entry(pWeapon2Range, width=20)
 pWeapon2Range_Num.pack(padx=5, pady=5)
 pWeapon2Type = tk.LabelFrame(playerWeapon2, text="Type")
 pWeapon2Type.grid(row=3, column=0, padx=(5,0), pady=5)
-pWeapon2Type_Num = tk.Text(pWeapon2Type, width=20, height=1)
+pWeapon2Type_Num = tk.Entry(pWeapon2Type, width=20)
 pWeapon2Type_Num.pack(padx=5, pady=5)
 pWeapon2AB = tk.LabelFrame(playerWeapon2, text="Attack Bonus")
 pWeapon2AB.grid(row=3, column=1)
-pWeapon2AB_Num = tk.Text(pWeapon2AB, width=10, height=1)
+pWeapon2AB_Num = tk.Entry(pWeapon2AB, width=10)
 pWeapon2AB_Num.pack(padx=5, pady=5)
 pWeapon2Damage = tk.LabelFrame(playerWeapon2, text="Damage")
 pWeapon2Damage.grid(row=3, column=2)
-pWeapon2Damage_Num = tk.Text(pWeapon2Damage, width=7, height=1)
+pWeapon2Damage_Num = tk.Entry(pWeapon2Damage, width=7)
 pWeapon2Damage_Num.pack(padx=5, pady=5)
 
 pWeapon2AttackButton = tk.Button(playerWeapon2, text="Attack")
@@ -464,23 +583,23 @@ playerWeapon3.grid(row=2, column=0, padx=5, pady=5)
 
 pWeapon3 = tk.LabelFrame(playerWeapon3, text="Weapon/Spell")
 pWeapon3.grid(row=0, column=0, padx=(5,0))
-pWeapon3_Num = tk.Text(pWeapon3, width=20, height=1)
+pWeapon3_Num = tk.Entry(pWeapon3, width=20)
 pWeapon3_Num.pack(padx=5, pady=5)
 pWeapon3Range = tk.LabelFrame(playerWeapon3, text="Range")
 pWeapon3Range.grid(row=0, column=1, columnspan=2, padx=5)
-pWeapon3Range_Num = tk.Text(pWeapon3Range, width=20, height=1)
+pWeapon3Range_Num = tk.Entry(pWeapon3Range, width=20)
 pWeapon3Range_Num.pack(padx=5, pady=5)
 pWeapon3Type = tk.LabelFrame(playerWeapon3, text="Type")
 pWeapon3Type.grid(row=1, column=0, padx=(5,0), pady=5)
-pWeapon3Type_Num = tk.Text(pWeapon3Type, width=20, height=1)
+pWeapon3Type_Num = tk.Entry(pWeapon3Type, width=20)
 pWeapon3Type_Num.pack(padx=5, pady=5)
 pWeapon3AB = tk.LabelFrame(playerWeapon3, text="Attack Bonus")
 pWeapon3AB.grid(row=1, column=1)
-pWeapon3AB_Num = tk.Text(pWeapon3AB, width=10, height=1)
+pWeapon3AB_Num = tk.Entry(pWeapon3AB, width=10)
 pWeapon3AB_Num.pack(padx=5, pady=5)
 pWeapon3Damage = tk.LabelFrame(playerWeapon3, text="Damage")
 pWeapon3Damage.grid(row=1, column=2)
-pWeapon3Damage_Num = tk.Text(pWeapon3Damage, width=7, height=1)
+pWeapon3Damage_Num = tk.Entry(pWeapon3Damage, width=7)
 pWeapon3Damage_Num.pack(padx=5, pady=5)
 
 pWeapon3AttackButton = tk.Button(playerWeapon3, text="Attack")
@@ -512,6 +631,8 @@ opl_Traits_text = tk.Text(opl_Traits, width=40, height=18)
 opl_Traits_text.pack()
 
 
+
+openInfoFile()
 
 
 window.mainloop()
