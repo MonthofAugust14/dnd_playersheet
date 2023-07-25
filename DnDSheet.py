@@ -495,24 +495,50 @@ def acFormula():
     newAC_Number = (int(ACdexModifier_input.get())+(int(ACarmor_input.get())+(int(ACshield_input.get()))+(int(ACMisc_input.get()))))
     pAC_input.insert(tk.END, newAC_Number)
 
-
-window = tk.Tk()
-window.title("Character Sheet")
-
-
-notebook = ttk.Notebook(window)
+def scrollBar():
+    dndPlayerSheet.configure(scrollregion=dndPlayerSheet.bbox('all'))
 
 
-dndPlayerSheet = tk.Label(notebook, background="grey")
+
+
+
+
+
+
+root = tk.Tk()
+root.title("Character Sheet")
+
+
+notebook = ttk.Notebook(root)
+
+
+dndPlayerSheet_tab = tk.Label(notebook, background="grey")
 dndSpellSheet = tk.Label(notebook)
 dndMonsterSheet = tk.Label(notebook)
 
-notebook.add(dndPlayerSheet, text = "Playercard")
+notebook.add(dndPlayerSheet_tab, text = "Playercard")
 notebook.add(dndSpellSheet, text = "Spell Sheet")
 notebook.add(dndMonsterSheet, text = "Monster Data")
 
 notebook.pack(expand=True, fill="both")
 
+########################################################################################################################
+#Creation of the scroll bar for the dndPlayerSheet_tab
+main_frame = tk.Frame(dndPlayerSheet_tab)
+main_frame.pack(fill=tk.BOTH, expand=1)
+#Create a canvas
+dndPlayerSheet_Canvas = tk.Canvas(main_frame)
+dndPlayerSheet_Canvas.pack(side=tk.LEFT, fill=tk.BOTH, expand=1)
+#Add the scroll bar to the canvas
+playersheet_scrollbar = ttk.Scrollbar(main_frame, orient=tk.VERTICAL, command=dndPlayerSheet_Canvas.yview)
+playersheet_scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+#Configure the canvas so the scrollbar can be used
+dndPlayerSheet_Canvas.configure(yscrollcommand=playersheet_scrollbar.set)
+#Creates a binding box around the player sheet where an event is passed in "lambda e"
+dndPlayerSheet_Canvas.bind('<Configure>', lambda e:dndPlayerSheet_Canvas.configure(scrollregion=dndPlayerSheet_Canvas.bbox('all')))
+dndPlayerSheet = tk.Frame(dndPlayerSheet_Canvas)
+dndPlayerSheet_Canvas.create_window((0,0), window=dndPlayerSheet, anchor="nw")
+########################################################################################################################
 
 ########################################################################################################################
 #Checkbox variables
@@ -547,7 +573,6 @@ dFail1 = tk.IntVar()
 dFail2 = tk.IntVar()
 dFail3 = tk.IntVar()
 ########################################################################################################################
-
 #character General information frame
 generalInfo_frame = tk.Frame(dndPlayerSheet)
 generalInfo_frame.grid(row=0, column=0, padx=5, pady=(5,0), columnspan=3, sticky="news")
@@ -992,4 +1017,4 @@ opl_Traits_text.pack()
 
 openInfoFile()
 
-window.mainloop()
+root.mainloop()
