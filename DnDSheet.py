@@ -495,19 +495,12 @@ def acFormula():
     newAC_Number = (int(ACdexModifier_input.get())+(int(ACarmor_input.get())+(int(ACshield_input.get()))+(int(ACMisc_input.get()))))
     pAC_input.insert(tk.END, newAC_Number)
 
-def scrollBar():
-    dndPlayerSheet.configure(scrollregion=dndPlayerSheet.bbox('all'))
-
-
-
-
-
-
 
 
 root = tk.Tk()
 root.title("Character Sheet")
-
+root.geometry('1040x1320')
+root.resizable(0,3000)
 
 notebook = ttk.Notebook(root)
 
