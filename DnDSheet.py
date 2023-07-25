@@ -495,7 +495,17 @@ def acFormula():
     newAC_Number = (int(ACdexModifier_input.get())+(int(ACarmor_input.get())+(int(ACshield_input.get()))+(int(ACMisc_input.get()))))
     pAC_input.insert(tk.END, newAC_Number)
 
+def addHealth():
+    newCurrentHealth = int(chp_input.get())
+    newCurrentHealth += 1
+    chp_input.delete(0, tk.END)
+    chp_input.insert(tk.END, newCurrentHealth)
 
+def subHealth():
+    newCurrentHealth = int(chp_input.get())
+    newCurrentHealth -= 1
+    chp_input.delete(0, tk.END)
+    chp_input.insert(tk.END, newCurrentHealth)
 
 root = tk.Tk()
 root.title("Character Sheet")
@@ -844,13 +854,17 @@ hitPoint_Frame = tk.Frame(health_Frame)
 hitPoint_Frame.grid(row=0, column=0, columnspan=2, padx=10, pady=5)
 
 hpm_label = tk.Label(hitPoint_Frame, text="Hit Points Maximum")
-hpm_label.grid(row=0, column=0, sticky="E")
+hpm_label.grid(row=0, column=0, padx=85)
 hpm_label_input = tk.Entry(hitPoint_Frame, width=4)
-hpm_label_input.grid(row=0, column=1, sticky="W")
+hpm_label_input.grid(row=0, column=1)
 chp_input = tk.Entry(hitPoint_Frame, width=4, font=("", 64))
-chp_input.grid(row=1, column=0, columnspan=2, padx=86)
+chp_input.grid(row=1, column=0, columnspan=2, rowspan=2, padx=85)
 chp_label = tk.Label(hitPoint_Frame, text="Current Hit Points")
-chp_label.grid(row=2, column=0, columnspan=2)
+chp_label.grid(row=3, column=0, columnspan=2)
+healthUp_button = tk.Button(hitPoint_Frame,text="+1", command=addHealth)
+healthUp_button.grid(row=1, column=1, sticky="news")
+healthDown_button = tk.Button(hitPoint_Frame,text="-1", command=subHealth)
+healthDown_button.grid(row=2, column=1, sticky="news")
 
 #Hit dice frame
 hd_Frame = tk.Frame(health_Frame)
