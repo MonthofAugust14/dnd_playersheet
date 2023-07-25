@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 import json
-
+import random as ran
 
 
 
@@ -44,7 +44,7 @@ def openInfoFile():
         pChr_ST_Num.insert(tk.END, cInfo_d['Chr_Saving_Throw'])
         pDeception_Num.insert(tk.END, cInfo_d['Deception'])
         pIntimidation_Num.insert(tk.END, cInfo_d['Intimidation'])
-        pPerception_Num.insert(tk.END, cInfo_d['Performance'])
+        pPerformance_Num.insert(tk.END, cInfo_d['Performance'])
         pPersuasion_Num.insert(tk.END, cInfo_d['Persuasion'])
         pPassiveWisdom_Num.insert(tk.END, cInfo_d['PassiveWisdom'])
         pAC_input.insert(tk.END, cInfo_d['ArmorClass'])
@@ -507,6 +507,308 @@ def subHealth():
     chp_input.delete(0, tk.END)
     chp_input.insert(tk.END, newCurrentHealth)
 
+def twentyone_check(roll_output):
+    if(roll_output == 20):
+        nat20_window = tk.Toplevel()
+        nat20_text = tk.Label(nat20_window, text="You Rolled a Natural 20!", font=("", 100))
+        nat20_text.pack()
+    elif(roll_output == 1):
+        nat1_window = tk.Toplevel()
+        nat1_text = tk.Label(nat1_window, text="You Rolled a Natural 1!", font=("", 100))
+        nat1_text.pack()    
+
+def strRoll_window():
+    def sst_roll_calculations():
+        results.delete(0, tk.END)
+        roll_output = int(ran.randint(1,20))
+        roll_output_insert = (int(pStr_ST_Num.get()) + roll_output)
+        results.insert(tk.END, roll_output_insert)
+        twentyone_check(roll_output)
+
+    def athletics_roll_calculations():
+        results.delete(0, tk.END)
+        roll_output = int(ran.randint(1,20))
+        roll_output_insert = (int(pAthletics_Num.get()) + roll_output)
+        results.insert(tk.END, roll_output_insert)
+        twentyone_check(roll_output)
+
+    roll_window = tk.Toplevel()
+    roll_window.title("Strength Roll")
+    
+    roll_frame = tk.Frame(roll_window, padx=20, pady=20)
+    roll_frame.pack()
+
+    roll_question = tk.Label(roll_frame,text="Choose a Attribute to Roll", font=("", 32), padx=10, pady=30)
+    roll_question.grid(row=0, column=0, columnspan=3)
+    str_saving_throw_button = tk.Button(roll_frame,command=sst_roll_calculations , text="Strength Saving Throw", font=("", 16), padx=10, pady=5)
+    str_saving_throw_button.grid(row=1, column=0, sticky="ew")
+    athletics_button = tk.Button(roll_frame, command=athletics_roll_calculations, text="Athletics", font=("", 16), padx=10, pady=5)
+    athletics_button.grid(row=2, column=0, sticky="ew")
+    results = tk.Entry(roll_frame, font=("", 64), width=2, border=10)
+    results.grid(row=1, column=2, rowspan=2)
+
+def dexRoll_window():
+    def dst_roll_calculations():
+        results.delete(0, tk.END)
+        roll_output = int(ran.randint(1,20))
+        roll_output_insert = (int(pStr_ST_Num.get()) + roll_output)
+        results.insert(tk.END, roll_output_insert)
+        twentyone_check(roll_output)
+
+    def acrobatics_roll_calculations():
+        results.delete(0, tk.END)
+        roll_output = int(ran.randint(1,20))
+        roll_output_insert = (int(pAcrobatics_Num.get()) + roll_output)
+        results.insert(tk.END, roll_output_insert)
+        twentyone_check(roll_output)
+
+    def SoH_roll_calculations():
+        results.delete(0, tk.END)
+        roll_output = int(ran.randint(1,20))
+        roll_output_insert = (int(pSlight_of_Hand_Num.get()) + roll_output)
+        results.insert(tk.END, roll_output_insert)
+        twentyone_check(roll_output)
+
+    def stealth_roll_calculations():
+        results.delete(0, tk.END)
+        roll_output = int(ran.randint(1,20))
+        roll_output_insert = (int(pStealth_Num.get()) + roll_output)
+        results.insert(tk.END, roll_output_insert)
+        twentyone_check(roll_output)        
+
+    roll_window = tk.Toplevel()
+    roll_window.title("Dexterity Roll")
+    
+    roll_frame = tk.Frame(roll_window, padx=20, pady=20)
+    roll_frame.pack()
+
+    roll_question = tk.Label(roll_frame,text="Choose a Attribute to Roll", font=("", 32), padx=10, pady=30)
+    roll_question.grid(row=0, column=0, columnspan=3)
+    dex_saving_throw_button = tk.Button(roll_frame,command=dst_roll_calculations , text="Dexterity Saving Throw", font=("", 16), padx=10, pady=5)
+    dex_saving_throw_button.grid(row=1, column=0, sticky="ew")
+    acrobatics_button = tk.Button(roll_frame, command=acrobatics_roll_calculations, text="Acrobatics", font=("", 16), padx=10, pady=5)
+    acrobatics_button.grid(row=2, column=0, sticky="ew")
+    results = tk.Entry(roll_frame, font=("", 64), width=2, border=10)
+    results.grid(row=1, column=2, rowspan=2)
+    SoH_button = tk.Button(roll_frame, command=SoH_roll_calculations, text="Slight of Hand", font=("", 16), padx=10, pady=5)
+    SoH_button.grid(row=3, column=0, sticky="ew")
+    stealth_button = tk.Button(roll_frame, command=stealth_roll_calculations, text="Stealth", font=("", 16), padx=10, pady=5)
+    stealth_button.grid(row=4, column=0, sticky="ew")    
+
+def conRoll_window():
+    def cst_roll_calculations():
+        results.delete(0, tk.END)
+        roll_output = int(ran.randint(1,20))
+        roll_output_insert = (int(pStr_ST_Num.get()) + roll_output)
+        results.insert(tk.END, roll_output_insert)
+        twentyone_check(roll_output)    
+
+    roll_window = tk.Toplevel()
+    roll_window.title("Constitution Roll")
+    
+    roll_frame = tk.Frame(roll_window, padx=20, pady=20)
+    roll_frame.pack()
+
+    roll_question = tk.Label(roll_frame,text="Choose a Attribute to Roll", font=("", 32), padx=10, pady=30)
+    roll_question.grid(row=0, column=0, columnspan=3)
+    con_saving_throw_button = tk.Button(roll_frame,command=cst_roll_calculations , text="Constitution Saving Throw", font=("", 16), padx=10, pady=5)
+    con_saving_throw_button.grid(row=1, column=0, sticky="ew")
+    results = tk.Entry(roll_frame, font=("", 64), width=2, border=10)
+    results.grid(row=1, column=2, rowspan=2)
+
+def intRoll_window():
+    def ist_roll_calculations():
+        results.delete(0, tk.END)
+        roll_output = int(ran.randint(1,20))
+        roll_output_insert = (int(pInt_ST_Num.get()) + roll_output)
+        results.insert(tk.END, roll_output_insert)
+        twentyone_check(roll_output)
+
+    def arcana_roll_calculations():
+        results.delete(0, tk.END)
+        roll_output = int(ran.randint(1,20))
+        roll_output_insert = (int(pArcana_Num.get()) + roll_output)
+        results.insert(tk.END, roll_output_insert)
+        twentyone_check(roll_output)
+
+    def history_roll_calculations():
+        results.delete(0, tk.END)
+        roll_output = int(ran.randint(1,20))
+        roll_output_insert = (int(pHistory_Num.get()) + roll_output)
+        results.insert(tk.END, roll_output_insert)
+        twentyone_check(roll_output)
+
+    def investigation_roll_calculations():
+        results.delete(0, tk.END)
+        roll_output = int(ran.randint(1,20))
+        roll_output_insert = (int(pInvestigation_Num.get()) + roll_output)
+        results.insert(tk.END, roll_output_insert)
+        twentyone_check(roll_output)     
+
+    def nature_roll_calculations():
+        results.delete(0, tk.END)
+        roll_output = int(ran.randint(1,20))
+        roll_output_insert = (int(pNature_Num.get()) + roll_output)
+        results.insert(tk.END, roll_output_insert)
+        twentyone_check(roll_output)  
+
+    def religion_roll_calculations():
+        results.delete(0, tk.END)
+        roll_output = int(ran.randint(1,20))
+        roll_output_insert = (int(pReligion_Num.get()) + roll_output)
+        results.insert(tk.END, roll_output_insert)
+        twentyone_check(roll_output)     
+
+    roll_window = tk.Toplevel()
+    roll_window.title("Intelligence Roll")
+    
+    roll_frame = tk.Frame(roll_window, padx=20, pady=20)
+    roll_frame.pack()
+
+    roll_question = tk.Label(roll_frame,text="Choose a Attribute to Roll", font=("", 32), padx=10, pady=30)
+    roll_question.grid(row=0, column=0, columnspan=3)
+    int_saving_throw_button = tk.Button(roll_frame,command=ist_roll_calculations , text="Intelligence Saving Throw", font=("", 16), padx=10, pady=5)
+    int_saving_throw_button.grid(row=1, column=0, sticky="ew")
+    arcana_button = tk.Button(roll_frame, command=arcana_roll_calculations, text="Arcana", font=("", 16), padx=10, pady=5)
+    arcana_button.grid(row=2, column=0, sticky="ew")
+    results = tk.Entry(roll_frame, font=("", 64), width=2, border=10)
+    results.grid(row=1, column=2, rowspan=2)
+    history_button = tk.Button(roll_frame, command=history_roll_calculations, text="History", font=("", 16), padx=10, pady=5)
+    history_button.grid(row=3, column=0, sticky="ew")
+    investigation_button = tk.Button(roll_frame, command=investigation_roll_calculations, text="Investigation", font=("", 16), padx=10, pady=5)
+    investigation_button.grid(row=4, column=0, sticky="ew")  
+    nature_button = tk.Button(roll_frame, command=nature_roll_calculations, text="Nature", font=("", 16), padx=10, pady=5)
+    nature_button.grid(row=5, column=0, sticky="ew")  
+    religion_button = tk.Button(roll_frame, command=religion_roll_calculations, text="Religion", font=("", 16), padx=10, pady=5)
+    religion_button.grid(row=6, column=0, sticky="ew")  
+
+def wisRoll_window():
+    def wis_roll_calculations():
+        results.delete(0, tk.END)
+        roll_output = int(ran.randint(1,20))
+        roll_output_insert = (int(pWis_ST_Num.get()) + roll_output)
+        results.insert(tk.END, roll_output_insert)
+        twentyone_check(roll_output)
+
+    def animalhandling_roll_calculations():
+        results.delete(0, tk.END)
+        roll_output = int(ran.randint(1,20))
+        roll_output_insert = (int(pAnimal_Handling_Num.get()) + roll_output)
+        results.insert(tk.END, roll_output_insert)
+        twentyone_check(roll_output)
+
+    def insight_roll_calculations():
+        results.delete(0, tk.END)
+        roll_output = int(ran.randint(1,20))
+        roll_output_insert = (int(pInsight_Num.get()) + roll_output)
+        results.insert(tk.END, roll_output_insert)
+        twentyone_check(roll_output)
+
+    def medicine_roll_calculations():
+        results.delete(0, tk.END)
+        roll_output = int(ran.randint(1,20))
+        roll_output_insert = (int(pMedicine_Num.get()) + roll_output)
+        results.insert(tk.END, roll_output_insert)
+        twentyone_check(roll_output)     
+
+    def perception_roll_calculations():
+        results.delete(0, tk.END)
+        roll_output = int(ran.randint(1,20))
+        roll_output_insert = (int(pPerception_Num.get()) + roll_output)
+        results.insert(tk.END, roll_output_insert)
+        twentyone_check(roll_output)  
+
+    def survival_roll_calculations():
+        results.delete(0, tk.END)
+        roll_output = int(ran.randint(1,20))
+        roll_output_insert = (int(pSurvival_Num.get()) + roll_output)
+        results.insert(tk.END, roll_output_insert)
+        twentyone_check(roll_output)     
+
+    roll_window = tk.Toplevel()
+    roll_window.title("Wisdom Roll")
+    
+    roll_frame = tk.Frame(roll_window, padx=20, pady=20)
+    roll_frame.pack()
+
+    roll_question = tk.Label(roll_frame,text="Choose a Attribute to Roll", font=("", 32), padx=10, pady=30)
+    roll_question.grid(row=0, column=0, columnspan=3)
+    wis_saving_throw_button = tk.Button(roll_frame,command=wis_roll_calculations , text="Wisdom Saving Throw", font=("", 16), padx=10, pady=5)
+    wis_saving_throw_button.grid(row=1, column=0, sticky="ew")
+    animalhandling_button = tk.Button(roll_frame, command=animalhandling_roll_calculations, text="Animal Handling", font=("", 16), padx=10, pady=5)
+    animalhandling_button.grid(row=2, column=0, sticky="ew")
+    results = tk.Entry(roll_frame, font=("", 64), width=2, border=10)
+    results.grid(row=1, column=2, rowspan=2)
+    insight_button = tk.Button(roll_frame, command=insight_roll_calculations, text="Insight", font=("", 16), padx=10, pady=5)
+    insight_button.grid(row=3, column=0, sticky="ew")
+    medicine_button = tk.Button(roll_frame, command=medicine_roll_calculations, text="Medicine", font=("", 16), padx=10, pady=5)
+    medicine_button.grid(row=4, column=0, sticky="ew")  
+    perception_button = tk.Button(roll_frame, command=perception_roll_calculations, text="Perception", font=("", 16), padx=10, pady=5)
+    perception_button.grid(row=5, column=0, sticky="ew")  
+    survival_button = tk.Button(roll_frame, command=survival_roll_calculations, text="Survival", font=("", 16), padx=10, pady=5)
+    survival_button.grid(row=6, column=0, sticky="ew") 
+
+def chrRoll_window():
+    def chr_roll_calculations():
+        results.delete(0, tk.END)
+        roll_output = int(ran.randint(1,20))
+        roll_output_insert = (int(pChr_ST_Num.get()) + roll_output)
+        results.insert(tk.END, roll_output_insert)
+        twentyone_check(roll_output)
+
+    def deception_roll_calculations():
+        results.delete(0, tk.END)
+        roll_output = int(ran.randint(1,20))
+        roll_output_insert = (int(pDeception_Num.get()) + roll_output)
+        results.insert(tk.END, roll_output_insert)
+        twentyone_check(roll_output)
+
+    def intimidation_roll_calculations():
+        results.delete(0, tk.END)
+        roll_output = int(ran.randint(1,20))
+        roll_output_insert = (int(pIntimidation_Num.get()) + roll_output)
+        results.insert(tk.END, roll_output_insert)
+        twentyone_check(roll_output)
+
+    def performance_roll_calculations():
+        results.delete(0, tk.END)
+        roll_output = int(ran.randint(1,20))
+        roll_output_insert = (int(pPerformance_Num.get()) + roll_output)
+        results.insert(tk.END, roll_output_insert)
+        twentyone_check(roll_output)     
+
+    def persuasion_roll_calculations():
+        results.delete(0, tk.END)
+        roll_output = int(ran.randint(1,20))
+        roll_output_insert = (int(pPersuasion_Num.get()) + roll_output)
+        results.insert(tk.END, roll_output_insert)
+        twentyone_check(roll_output)     
+
+    roll_window = tk.Toplevel()
+    roll_window.title("Wisdom Roll")
+    
+    roll_frame = tk.Frame(roll_window, padx=20, pady=20)
+    roll_frame.pack()
+
+    roll_question = tk.Label(roll_frame,text="Choose a Attribute to Roll", font=("", 32), padx=10, pady=30)
+    roll_question.grid(row=0, column=0, columnspan=3)
+    chr_saving_throw_button = tk.Button(roll_frame,command=chr_roll_calculations , text="Charisma Saving Throw", font=("", 16), padx=10, pady=5)
+    chr_saving_throw_button.grid(row=1, column=0, sticky="ew")
+    deception_button = tk.Button(roll_frame, command=deception_roll_calculations, text="Deception", font=("", 16), padx=10, pady=5)
+    deception_button.grid(row=2, column=0, sticky="ew")
+    results = tk.Entry(roll_frame, font=("", 64), width=2, border=10)
+    results.grid(row=1, column=2, rowspan=2)
+    intimidation_button = tk.Button(roll_frame, command=intimidation_roll_calculations, text="Insight", font=("", 16), padx=10, pady=5)
+    intimidation_button.grid(row=3, column=0, sticky="ew")
+    performance_button = tk.Button(roll_frame, command=performance_roll_calculations, text="Medicine", font=("", 16), padx=10, pady=5)
+    performance_button.grid(row=4, column=0, sticky="ew")  
+    persuasion_button = tk.Button(roll_frame, command=persuasion_roll_calculations, text="Perception", font=("", 16), padx=10, pady=5)
+    persuasion_button.grid(row=5, column=0, sticky="ew")
+
+
+
+
+
 root = tk.Tk()
 root.title("Character Sheet")
 root.geometry('1040x1320')
@@ -545,6 +847,7 @@ dndPlayerSheet_Canvas.create_window((0,0), window=dndPlayerSheet, anchor="nw")
 
 ########################################################################################################################
 #Checkbox variables
+characterInspirationCB = tk.IntVar()
 strSavingThrowCB = tk.IntVar()
 AthleticsCB = tk.IntVar()
 dexSavingThrowCB = tk.IntVar()
@@ -617,14 +920,14 @@ pBonus = tk.Label(stats_Frame, text="Proficiency Bonus")
 pBonus.grid(row=0, column=0, padx=5, pady=5)
 pBonus_input = tk.Entry(stats_Frame, width=2)
 pBonus_input.grid(row=0, column=1, padx=5, pady=5)
-pInpiration = tk.Checkbutton(stats_Frame, text="Inspiration")
+pInpiration = tk.Checkbutton(stats_Frame, text="Inspiration", variable=characterInspirationCB)
 pInpiration.grid(row=1, column=0, padx=5, pady=5, columnspan=2)
 
 #Character Strength Stats
 pStrength_Frame = tk.LabelFrame(stats_Frame, text="Strength")
 pStrength_Frame.grid(row=2, column=0, columnspan=2, padx=10, pady=2)
 
-pRolls = tk.Button(pStrength_Frame, text = "Roll")
+pRolls = tk.Button(pStrength_Frame, text = "Roll", command=strRoll_window)
 pRolls.grid(row=4, column=0, pady=(5), padx=5, sticky="news")
 
 pStr_input = tk.Entry(pStrength_Frame, font=("", 64), width=2)
@@ -643,7 +946,7 @@ pAthletics_Num.grid(row=1, column=2, sticky="E", padx=15)
 pDexterity_Frame = tk.LabelFrame(stats_Frame, text="Dexterity")
 pDexterity_Frame.grid(row=3, column=0, columnspan=2, padx=10, pady=2)
 
-pRolld = tk.Button(pDexterity_Frame, text = "Roll")
+pRolld = tk.Button(pDexterity_Frame, text = "Roll", command=dexRoll_window)
 pRolld.grid(row=4, column=0, pady=(5), padx=5, sticky="news")
 
 pDex_input = tk.Entry(pDexterity_Frame, font=("", 64), width=2)
@@ -670,7 +973,7 @@ pStealth_Num.grid(row=3, column=2, sticky="E", padx=9)
 pConstitution_Frame = tk.LabelFrame(stats_Frame, text="Constitution")
 pConstitution_Frame.grid(row=4, column=0, columnspan=2, padx=10, pady=2)
 
-pRollcon = tk.Button(pConstitution_Frame, text = "Roll")
+pRollcon = tk.Button(pConstitution_Frame, text = "Roll", command=conRoll_window)
 pRollcon.grid(row=1, column=0, pady=(5), padx=5, sticky="news")
 
 pCon_input = tk.Entry(pConstitution_Frame, font=("", 64), width=2)
@@ -685,7 +988,7 @@ pCon_ST_Num.grid(row=0, column=2, sticky="E", padx=15)
 pIntelligence_Frame = tk.LabelFrame(stats_Frame, text="Intelligence")
 pIntelligence_Frame.grid(row=5, column=0, columnspan=2, padx=10, pady=2)
 
-pRolli = tk.Button(pIntelligence_Frame, text = "Roll")
+pRolli = tk.Button(pIntelligence_Frame, text = "Roll", command=intRoll_window)
 pRolli.grid(row=4, column=0, pady=5, padx=5, sticky="news")
 
 pInt_input = tk.Entry(pIntelligence_Frame, font=("", 64), width=2)
@@ -720,7 +1023,7 @@ pReligion_Num.grid(row=5, column=2, sticky="E", padx=15)
 pWisdom_Frame = tk.LabelFrame(stats_Frame, text="Wisdom")
 pWisdom_Frame.grid(row=6, column=0, columnspan=2, padx=10, pady=2)
 
-pRollw = tk.Button(pWisdom_Frame, text = "Roll")
+pRollw = tk.Button(pWisdom_Frame, text = "Roll", command=wisRoll_window)
 pRollw.grid(row=4, column=0, padx=5, pady=5, sticky="news")
 
 pWis_input = tk.Entry(pWisdom_Frame, font=("", 64), width=2)
@@ -756,7 +1059,7 @@ pSurvival_Num.grid(row=5, column=2, sticky="W")
 pCharisma_Frame = tk.LabelFrame(stats_Frame, text="Charisma")
 pCharisma_Frame.grid(row=7, column=0, columnspan=2, padx=10, pady=2)
 
-pRollc = tk.Button(pCharisma_Frame, text = "Roll")
+pRollc = tk.Button(pCharisma_Frame, text = "Roll", command=chrRoll_window)
 pRollc.grid(row=4, column=0, pady=(5), padx=5, sticky="news")
 
 pChr_input = tk.Entry(pCharisma_Frame, font=("", 64), width=2)
