@@ -1,23 +1,55 @@
 import tkinter as tk
 
+
+
+def display():
+
+    if(x.get()==1):
+
+        print("You agree!")
+
+    else:
+
+        print("You don't agree :(")
+
+
+
 window = tk.Tk()
-window.geometry("500x500")
 
-frame = tk.LabelFrame(window, text="Labelframe test")
-frame.grid(row=0, column=0)
+x = tk.IntVar()
 
-button = tk.Button(frame, text="Test", font=("", 100))
-button.grid(row=0, column=0, sticky="news")
-button2 = tk.Button(frame, text="Test2", font=("", 100))
-button2.grid(row=1, column=1, sticky="news")
+check_button = tk.Checkbutton(window,
 
-window.grid_rowconfigure(0, weight=1)
-window.grid_columnconfigure(0, weight=1)
+                           text="I agree to something",
 
-frame.grid_rowconfigure(0, weight=1)
-frame.grid_columnconfigure(0, weight=1)
-frame.grid_rowconfigure(1, weight=1)
-frame.grid_columnconfigure(1, weight=1)
+                           variable=x,
+
+                           onvalue=1,
+
+                           offvalue=0,
+
+                           command=display,
+
+                           font=('Arial',20),
+
+                           fg='#00FF00',
+
+                           bg='black',
+
+                           activeforeground='#00FF00',
+
+                           activebackground='black',
+
+                           padx=25,
+
+                           pady=10,
+
+                           compound='left')
+
+check_button.pack()
+
+
+
 
 
 window.mainloop()

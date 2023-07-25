@@ -77,11 +77,77 @@ def openInfoFile():
         items_text2.insert(tk.END, cInfo_d['Items_Text_Box2'])
         features_Traits_text.insert(tk.END, cInfo_d['Featires_Traits_Box'])
         opl_Traits_text.insert(tk.END, cInfo_d['OtherProficienciesLanguages_Box'])
+        if(cInfo_d['StrengthProficiencyButton']==1):
+            pStr_ST.select()
+        if(cInfo_d['AthleticsProficiencyButton']==1):
+            pAthletics.select()
+        if(cInfo_d['DexterityProcifiencyButton']==1):
+            pDex_ST.select()
+        if(cInfo_d['AcrobaticsProficiencyButton']==1):
+            pAcrobatics.select()
+        if(cInfo_d['SoHProficiencyButton']==1):
+            pSlight_of_Hand.select()
+        if(cInfo_d['StealthProficiencyButton']==1):
+            pStealth.select()
+        if(cInfo_d['ConstitutionProficiencyButton']==1):
+            pCon_ST.select()
+        if(cInfo_d['IntelligenceProficiencyButton']==1):
+            pInt_ST.select()
+        if(cInfo_d['ArcanaProficiencyButton']==1):
+            pArcana.select()
+        if(cInfo_d['HistoryProficiencyButton']==1):
+            pHistory.select()
+        if(cInfo_d['InvestigationProficiencyButton']==1):
+            pInvestigation.select()
+        if(cInfo_d['NatureProficiencyButton']==1):
+            pNature.select()
+        if(cInfo_d['ReligionProficiencyButton']==1):
+            pReligion.select()
+        if(cInfo_d['WisdomProficiencyButton']==1):
+            pWis_ST.select()
+        if(cInfo_d['AnimalHandlingProficiencyButton']==1):
+            pAnimal_Handling.select()
+        if(cInfo_d['InsightProficiencyButton']==1):
+            pInsight.select()
+        if(cInfo_d['MedicineProficiencyButton']==1):
+            pMedicine.select()
+        if(cInfo_d['PerceptionProficiencyButton']==1):
+            pPerception.select()
+        if(cInfo_d['SurvivalProficiencyButton']==1):
+            pSurvival.select()
+        if(cInfo_d['CharismaProficiencyButton']==1):
+            pChr_ST.select()
+        if(cInfo_d['DeceptionProficiencyButton']==1):
+            pDeception.select()
+        if(cInfo_d['IntimidationProficiencyButton']==1):
+            pIntimidation.select()
+        if(cInfo_d['PerformanceProficiencyButton']==1):
+            pPerformance.select()
+        if(cInfo_d['PersuasionProficiencyButton']==1):
+            pPersuasion.select()
+        if(cInfo_d['DeathSave1']==1):
+            success_1.select()
+        if(cInfo_d['DeathSave2']==1):
+            success_2.select()
+        if(cInfo_d['DeathSave3']==1):
+            success_3.select()
+        if(cInfo_d['DeathFail1']==1):
+            failure_1.select()
+        if(cInfo_d['DeathFail2']==1):
+            failure_2.select()
+        if(cInfo_d['DeathFail3']==1):
+            failure_3.select()
+    
+
     except json.JSONDecodeError:
+        savePlayerSheet()
+    
+    except KeyError:
         savePlayerSheet()
 
 
 def savePlayerSheet():
+
     cInfo_d.update(Name=str(cName_input.get()),
                    Class=str(cClass_input.get()),
                    Level=str(cLevel_input.get()),
@@ -148,18 +214,283 @@ def savePlayerSheet():
                    Items_Text_Box=str(items_text1.get(1.0, "end-1c")),
                    Items_Text_Box2=str(items_text2.get(1.0, "end-1c")),
                    Featires_Traits_Box=str(features_Traits_text.get(1.0, "end-1c")),
-                   OtherProficienciesLanguages_Box=str(opl_Traits_text.get(1.0, "end-1c"))
-
+                   OtherProficienciesLanguages_Box=str(opl_Traits_text.get(1.0, "end-1c")),
+                   StrengthProficiencyButton=strSavingThrowCB.get(),
+                   AthleticsProficiencyButton=AthleticsCB.get(),
+                   DexterityProcifiencyButton=dexSavingThrowCB.get(),
+                   AcrobaticsProficiencyButton=AcrobaticsCB.get(),
+                   SoHProficiencyButton=SlightofHandCB.get(),
+                   StealthProficiencyButton=StealthCB.get(),
+                   ConstitutionProficiencyButton=ConSavingThrowCB.get(),
+                   IntelligenceProficiencyButton=IntSavingThrowCB.get(),
+                   ArcanaProficiencyButton=ArcanaCB.get(),
+                   HistoryProficiencyButton=HistoryCB.get(),
+                   InvestigationProficiencyButton=InvestigationCB.get(),
+                   NatureProficiencyButton=NatureCB.get(),
+                   ReligionProficiencyButton=ReligionCB.get(),
+                   WisdomProficiencyButton=WisSavingThrowCB.get(),
+                   AnimalHandlingProficiencyButton=AnimalHandlingCB.get(),
+                   InsightProficiencyButton=InsightCB.get(),
+                   MedicineProficiencyButton=MedicineCB.get(),
+                   PerceptionProficiencyButton=PerceptionCB.get(),
+                   SurvivalProficiencyButton=SurvivalCB.get(),
+                   CharismaProficiencyButton=ChrSavingThrowCB.get(),
+                   DeceptionProficiencyButton=DeceptionCB.get(),
+                   IntimidationProficiencyButton=IntimidationCB.get(),
+                   PerformanceProficiencyButton=PerformanceCB.get(),
+                   PersuasionProficiencyButton=PersuasionCB.get(),
+                   DeathSave1=dSave1.get(),
+                   DeathSave2=dSave2.get(),
+                   DeathSave3=dSave3.get(),
+                   DeathFail1=dFail1.get(),
+                   DeathFail2=dFail2.get(),
+                   DeathFail3=dFail3.get(),
     )   
-
+    
     json.dump(cInfo_d, open('info.json', 'w'), indent=2)
 
 
-def statButtonChecked():
-    if (strSavingThrow.get()==1):
-        isProficient = pBonus_input.get() + pStr_ST_Num.get()
-        pStr_ST_Num.insert(isProficient)
+def strProfButton():
+    if(strSavingThrowCB.get()==1):
+        isProficient = (int(pStr_ST_Num.get()) + int(pBonus_input.get()))
+        pStr_ST_Num.delete(0, tk.END)
+        pStr_ST_Num.insert(tk.END, isProficient)
+    else:
+        isNotProficient = (int(pStr_ST_Num.get()) - int(pBonus_input.get()))
+        pStr_ST_Num.delete(0, tk.END)
+        pStr_ST_Num.insert(tk.END, isNotProficient)
     
+def athleticsProfButton():
+    if(AthleticsCB.get()==1):
+        isProficient = (int(pAthletics_Num.get()) + int(pBonus_input.get()))
+        pAthletics_Num.delete(0, tk.END)
+        pAthletics_Num.insert(tk.END, isProficient)
+    else:
+        isNotProficient = (int(pAthletics_Num.get()) - int(pBonus_input.get()))
+        pAthletics_Num.delete(0, tk.END)
+        pAthletics_Num.insert(tk.END, isNotProficient)
+
+def dexProfButton():
+    if(dexSavingThrowCB.get()==1):
+        isProficient = (int(pDex_ST_Num.get()) + int(pBonus_input.get()))
+        pDex_ST_Num.delete(0, tk.END)
+        pDex_ST_Num.insert(tk.END, isProficient)
+    else:
+        isNotProficient = (int(pDex_ST_Num.get()) - int(pBonus_input.get()))
+        pDex_ST_Num.delete(0, tk.END)
+        pDex_ST_Num.insert(tk.END, isNotProficient)
+
+def acrobaticsProfButton():
+    if(AcrobaticsCB.get()==1):
+        isProficient = (int(pAcrobatics_Num.get()) + int(pBonus_input.get()))
+        pAcrobatics_Num.delete(0, tk.END)
+        pAcrobatics_Num.insert(tk.END, isProficient)
+    else:
+        isNotProficient = (int(pAcrobatics_Num.get()) - int(pBonus_input.get()))
+        pAcrobatics_Num.delete(0, tk.END)
+        pAcrobatics_Num.insert(tk.END, isNotProficient)
+
+def slightofHandProfButton():
+    if(SlightofHandCB.get()==1):
+        isProficient = (int(pSlight_of_Hand_Num.get()) + int(pBonus_input.get()))
+        pSlight_of_Hand_Num.delete(0, tk.END)
+        pSlight_of_Hand_Num.insert(tk.END, isProficient)
+    else:
+        isNotProficient = (int(pSlight_of_Hand_Num.get()) - int(pBonus_input.get()))
+        pSlight_of_Hand_Num.delete(0, tk.END)
+        pSlight_of_Hand_Num.insert(tk.END, isNotProficient)
+
+def stealthProfButton():
+    if(StealthCB.get()==1):
+        isProficient = (int(pStealth_Num.get()) + int(pBonus_input.get()))
+        pStealth_Num.delete(0, tk.END)
+        pStealth_Num.insert(tk.END, isProficient)
+    else:
+        isNotProficient = (int(pStealth_Num.get()) - int(pBonus_input.get()))
+        pStealth_Num.delete(0, tk.END)
+        pStealth_Num.insert(tk.END, isNotProficient)
+
+def conProfButton():
+    if(ConSavingThrowCB.get()==1):
+        isProficient = (int(pCon_ST_Num.get()) + int(pBonus_input.get()))
+        pCon_ST_Num.delete(0, tk.END)
+        pCon_ST_Num.insert(tk.END, isProficient)
+    else:
+        isNotProficient = (int(pCon_ST_Num.get()) - int(pBonus_input.get()))
+        pCon_ST_Num.delete(0, tk.END)
+        pCon_ST_Num.insert(tk.END, isNotProficient)
+
+def intProfButton():
+    if(IntSavingThrowCB.get()==1):
+        isProficient = (int(pInt_ST_Num.get()) + int(pBonus_input.get()))
+        pInt_ST_Num.delete(0, tk.END)
+        pInt_ST_Num.insert(tk.END, isProficient)
+    else:
+        isNotProficient = (int(pInt_ST_Num.get()) - int(pBonus_input.get()))
+        pInt_ST_Num.delete(0, tk.END)
+        pInt_ST_Num.insert(tk.END, isNotProficient)
+
+def arcanaProfButton():
+    if(ArcanaCB.get()==1):
+        isProficient = (int(pArcana_Num.get()) + int(pBonus_input.get()))
+        pArcana_Num.delete(0, tk.END)
+        pArcana_Num.insert(tk.END, isProficient)
+    else:
+        isNotProficient = (int(pArcana_Num.get()) - int(pBonus_input.get()))
+        pArcana_Num.delete(0, tk.END)
+        pArcana_Num.insert(tk.END, isNotProficient)
+
+def historyProfButton():
+    if(HistoryCB.get()==1):
+        isProficient = (int(pHistory_Num.get()) + int(pBonus_input.get()))
+        pHistory_Num.delete(0, tk.END)
+        pHistory_Num.insert(tk.END, isProficient)
+    else:
+        isNotProficient = (int(pHistory_Num.get()) - int(pBonus_input.get()))
+        pHistory_Num.delete(0, tk.END)
+        pHistory_Num.insert(tk.END, isNotProficient)
+
+def investigationProfButton():
+    if(InvestigationCB.get()==1):
+        isProficient = (int(pInvestigation_Num.get()) + int(pBonus_input.get()))
+        pInvestigation_Num.delete(0, tk.END)
+        pInvestigation_Num.insert(tk.END, isProficient)
+    else:
+        isNotProficient = (int(pInvestigation_Num.get()) - int(pBonus_input.get()))
+        pInvestigation_Num.delete(0, tk.END)
+        pInvestigation_Num.insert(tk.END, isNotProficient)
+
+def natureProfButton():
+    if(NatureCB.get()==1):
+        isProficient = (int(pNature_Num.get()) + int(pBonus_input.get()))
+        pNature_Num.delete(0, tk.END)
+        pNature_Num.insert(tk.END, isProficient)
+    else:
+        isNotProficient = (int(pNature_Num.get()) - int(pBonus_input.get()))
+        pNature_Num.delete(0, tk.END)
+        pNature_Num.insert(tk.END, isNotProficient)
+
+def religionProfButton():
+    if(ReligionCB.get()==1):
+        isProficient = (int(pReligion_Num.get()) + int(pBonus_input.get()))
+        pReligion_Num.delete(0, tk.END)
+        pReligion_Num.insert(tk.END, isProficient)
+    else:
+        isNotProficient = (int(pReligion_Num.get()) - int(pBonus_input.get()))
+        pReligion_Num.delete(0, tk.END)
+        pReligion_Num.insert(tk.END, isNotProficient)
+
+def wisProfButton():
+    if(WisSavingThrowCB.get()==1):
+        isProficient = (int(pWis_ST_Num.get()) + int(pBonus_input.get()))
+        pWis_ST_Num.delete(0, tk.END)
+        pWis_ST_Num.insert(tk.END, isProficient)
+    else:
+        isNotProficient = (int(pWis_ST_Num.get()) - int(pBonus_input.get()))
+        pWis_ST_Num.delete(0, tk.END)
+        pWis_ST_Num.insert(tk.END, isNotProficient)
+
+def ahProfButton():
+    if(AnimalHandlingCB.get()==1):
+        isProficient = (int(pAnimal_Handling_Num.get()) + int(pBonus_input.get()))
+        pAnimal_Handling_Num.delete(0, tk.END)
+        pAnimal_Handling_Num.insert(tk.END, isProficient)
+    else:
+        isNotProficient = (int(pAnimal_Handling_Num.get()) - int(pBonus_input.get()))
+        pAnimal_Handling_Num.delete(0, tk.END)
+        pAnimal_Handling_Num.insert(tk.END, isNotProficient)
+
+def insightProfButton():
+    if(InsightCB.get()==1):
+        isProficient = (int(pInsight_Num.get()) + int(pBonus_input.get()))
+        pInsight_Num.delete(0, tk.END)
+        pInsight_Num.insert(tk.END, isProficient)
+    else:
+        isNotProficient = (int(pInsight_Num.get()) - int(pBonus_input.get()))
+        pInsight_Num.delete(0, tk.END)
+        pInsight_Num.insert(tk.END, isNotProficient)
+
+def medicineProfButton():
+    if(MedicineCB.get()==1):
+        isProficient = (int(pMedicine_Num.get()) + int(pBonus_input.get()))
+        pMedicine_Num.delete(0, tk.END)
+        pMedicine_Num.insert(tk.END, isProficient)
+    else:
+        isNotProficient = (int(pMedicine_Num.get()) - int(pBonus_input.get()))
+        pMedicine_Num.delete(0, tk.END)
+        pMedicine_Num.insert(tk.END, isNotProficient)
+
+def perceptionProfButton():
+    if(PerceptionCB.get()==1):
+        isProficient = (int(pPerception_Num.get()) + int(pBonus_input.get()))
+        pPerception_Num.delete(0, tk.END)
+        pPerception_Num.insert(tk.END, isProficient)
+    else:
+        isNotProficient = (int(pPerception_Num.get()) - int(pBonus_input.get()))
+        pPerception_Num.delete(0, tk.END)
+        pPerception_Num.insert(tk.END, isNotProficient)
+
+def survivalProfButton():
+    if(SurvivalCB.get()==1):
+        isProficient = (int(pSurvival_Num.get()) + int(pBonus_input.get()))
+        pSurvival_Num.delete(0, tk.END)
+        pSurvival_Num.insert(tk.END, isProficient)
+    else:
+        isNotProficient = (int(pSurvival_Num.get()) - int(pBonus_input.get()))
+        pSurvival_Num.delete(0, tk.END)
+        pSurvival_Num.insert(tk.END, isNotProficient)
+
+def chrProfButton():
+    if(ChrSavingThrowCB.get()==1):
+        isProficient = (int(pChr_ST_Num.get()) + int(pBonus_input.get()))
+        pChr_ST_Num.delete(0, tk.END)
+        pChr_ST_Num.insert(tk.END, isProficient)
+    else:
+        isNotProficient = (int(pChr_ST_Num.get()) - int(pBonus_input.get()))
+        pChr_ST_Num.delete(0, tk.END)
+        pChr_ST_Num.insert(tk.END, isNotProficient)
+
+def deceptionProfButton():
+    if(DeceptionCB.get()==1):
+        isProficient = (int(pDeception_Num.get()) + int(pBonus_input.get()))
+        pDeception_Num.delete(0, tk.END)
+        pDeception_Num.insert(tk.END, isProficient)
+    else:
+        isNotProficient = (int(pDeception_Num.get()) - int(pBonus_input.get()))
+        pDeception_Num.delete(0, tk.END)
+        pDeception_Num.insert(tk.END, isNotProficient)
+
+def intimidationProfButton():
+    if(IntimidationCB.get()==1):
+        isProficient = (int(pIntimidation_Num.get()) + int(pBonus_input.get()))
+        pIntimidation_Num.delete(0, tk.END)
+        pIntimidation_Num.insert(tk.END, isProficient)
+    else:
+        isNotProficient = (int(pIntimidation_Num.get()) - int(pBonus_input.get()))
+        pIntimidation_Num.delete(0, tk.END)
+        pIntimidation_Num.insert(tk.END, isNotProficient)
+
+def performanceProfButton():
+    if(PerformanceCB.get()==1):
+        isProficient = (int(pPerformance_Num.get()) + int(pBonus_input.get()))
+        pPerformance_Num.delete(0, tk.END)
+        pPerformance_Num.insert(tk.END, isProficient)
+    else:
+        isNotProficient = (int(pPerformance_Num.get()) - int(pBonus_input.get()))
+        pPerformance_Num.delete(0, tk.END)
+        pPerformance_Num.insert(tk.END, isNotProficient)
+
+def persuasionProfButton():
+    if(PersuasionCB.get()==1):
+        isProficient = (int(pPersuasion_Num.get()) + int(pBonus_input.get()))
+        pPersuasion_Num.delete(0, tk.END)
+        pPersuasion_Num.insert(tk.END, isProficient)
+    else:
+        isNotProficient = (int(pPersuasion_Num.get()) - int(pBonus_input.get()))
+        pPersuasion_Num.delete(0, tk.END)
+        pPersuasion_Num.insert(tk.END, isNotProficient)
+
+
 
 
 
@@ -182,21 +513,37 @@ notebook.pack(expand=True, fill="both")
 
 
 ########################################################################################################################
-
-strSavingThrow = tk.IntVar()
-
-
-
-StatAbilityButtonVar = [strSavingThrow]
-
-
-
-
-
-
-
-
-
+#Checkbox variables
+strSavingThrowCB = tk.IntVar()
+AthleticsCB = tk.IntVar()
+dexSavingThrowCB = tk.IntVar()
+AcrobaticsCB = tk.IntVar()
+SlightofHandCB = tk.IntVar()
+StealthCB = tk.IntVar()
+ConSavingThrowCB = tk.IntVar()
+IntSavingThrowCB = tk.IntVar()
+ArcanaCB = tk.IntVar()
+HistoryCB = tk.IntVar()
+InvestigationCB = tk.IntVar()
+NatureCB = tk.IntVar()
+ReligionCB = tk.IntVar()
+WisSavingThrowCB = tk.IntVar()
+AnimalHandlingCB = tk.IntVar()
+InsightCB = tk.IntVar()
+MedicineCB = tk.IntVar()
+PerceptionCB = tk.IntVar()
+SurvivalCB = tk.IntVar()
+ChrSavingThrowCB = tk.IntVar()
+DeceptionCB = tk.IntVar()
+IntimidationCB = tk.IntVar()
+PerformanceCB = tk.IntVar()
+PersuasionCB = tk.IntVar()
+dSave1 = tk.IntVar()
+dSave2 = tk.IntVar()
+dSave3 = tk.IntVar()
+dFail1 = tk.IntVar()
+dFail2 = tk.IntVar()
+dFail3 = tk.IntVar()
 ########################################################################################################################
 
 #character General information frame
@@ -253,11 +600,11 @@ pRolls.grid(row=4, column=0, pady=(5), padx=5, sticky="news")
 pStr_input = tk.Entry(pStrength_Frame, font=("", 64), width=2)
 pStr_input.grid(row=0, column=0, rowspan=4, padx=5, pady=(5,0))
 
-pStr_ST = tk.Checkbutton(pStrength_Frame, text = "Saving Throw", variable=strSavingThrow)
+pStr_ST = tk.Checkbutton(pStrength_Frame, text = "Saving Throw", variable=strSavingThrowCB, command=strProfButton)
 pStr_ST.grid(row=0, column=1, sticky="W")
 pStr_ST_Num = tk.Entry(pStrength_Frame, width=2)
 pStr_ST_Num.grid(row=0, column=2, sticky="E", padx=15)
-pAthletics = tk.Checkbutton(pStrength_Frame, text = "Athletics")
+pAthletics = tk.Checkbutton(pStrength_Frame, text = "Athletics", variable=AthleticsCB, command=athleticsProfButton)
 pAthletics.grid(row=1, column=1, sticky="W")
 pAthletics_Num = tk.Entry(pStrength_Frame, width=2)
 pAthletics_Num.grid(row=1, column=2, sticky="E", padx=15)
@@ -272,19 +619,19 @@ pRolld.grid(row=4, column=0, pady=(5), padx=5, sticky="news")
 pDex_input = tk.Entry(pDexterity_Frame, font=("", 64), width=2)
 pDex_input.grid(row=0, column=0, rowspan=4, padx=5)
 
-pDex_ST = tk.Checkbutton(pDexterity_Frame, text = "Saving Throw")
+pDex_ST = tk.Checkbutton(pDexterity_Frame, text = "Saving Throw", variable=dexSavingThrowCB, command=dexProfButton)
 pDex_ST.grid(row=0, column=1, sticky="W")
 pDex_ST_Num = tk.Entry(pDexterity_Frame, width=2)
 pDex_ST_Num.grid(row=0, column=2, sticky="E", padx=9)
-pAcrobatics = tk.Checkbutton(pDexterity_Frame, text = "Acrobatics")
+pAcrobatics = tk.Checkbutton(pDexterity_Frame, text = "Acrobatics", variable=AcrobaticsCB, command=acrobaticsProfButton)
 pAcrobatics.grid(row=1, column=1, sticky="W")
 pAcrobatics_Num = tk.Entry(pDexterity_Frame, width=2)
 pAcrobatics_Num.grid(row=1, column=2, sticky="E", padx=9)
-pSlight_of_Hand = tk.Checkbutton(pDexterity_Frame, text = "Sleight of Hand")
+pSlight_of_Hand = tk.Checkbutton(pDexterity_Frame, text = "Sleight of Hand", variable=SlightofHandCB, command=slightofHandProfButton)
 pSlight_of_Hand.grid(row=2, column=1, sticky="W")
 pSlight_of_Hand_Num = tk.Entry(pDexterity_Frame, width=2)
 pSlight_of_Hand_Num.grid(row=2, column=2, sticky="E", padx=9)
-pStealth = tk.Checkbutton(pDexterity_Frame, text = "Stealth")
+pStealth = tk.Checkbutton(pDexterity_Frame, text = "Stealth", variable=StealthCB, command=stealthProfButton)
 pStealth.grid(row=3, column=1, sticky="W")
 pStealth_Num = tk.Entry(pDexterity_Frame, width=2)
 pStealth_Num.grid(row=3, column=2, sticky="E", padx=9)
@@ -299,7 +646,7 @@ pRollcon.grid(row=1, column=0, pady=(5), padx=5, sticky="news")
 pCon_input = tk.Entry(pConstitution_Frame, font=("", 64), width=2)
 pCon_input.grid(row=0, column=0, padx=5)
 
-pCon_ST = tk.Checkbutton(pConstitution_Frame, text = "Saving Throw")
+pCon_ST = tk.Checkbutton(pConstitution_Frame, text = "Saving Throw", variable=ConSavingThrowCB, command=conProfButton)
 pCon_ST.grid(row=0, column=1, sticky="W")
 pCon_ST_Num = tk.Entry(pConstitution_Frame, width=2)
 pCon_ST_Num.grid(row=0, column=2, sticky="E", padx=15)
@@ -314,27 +661,27 @@ pRolli.grid(row=4, column=0, pady=5, padx=5, sticky="news")
 pInt_input = tk.Entry(pIntelligence_Frame, font=("", 64), width=2)
 pInt_input.grid(row=0, column=0, rowspan=4, padx=5)
 
-pInt_ST = tk.Checkbutton(pIntelligence_Frame, text = "Saving Throw")
+pInt_ST = tk.Checkbutton(pIntelligence_Frame, text = "Saving Throw", variable=IntSavingThrowCB, command=intProfButton)
 pInt_ST.grid(row=0, column=1, sticky="W")
 pInt_ST_Num = tk.Entry(pIntelligence_Frame, width=2)
 pInt_ST_Num.grid(row=0, column=2, sticky="E", padx=15)
-pArcana = tk.Checkbutton(pIntelligence_Frame, text = "Arcana")
+pArcana = tk.Checkbutton(pIntelligence_Frame, text = "Arcana", variable=ArcanaCB, command=arcanaProfButton)
 pArcana.grid(row=1, column=1, sticky="W")
 pArcana_Num = tk.Entry(pIntelligence_Frame, width=2)
 pArcana_Num.grid(row=1, column=2, sticky="E", padx=15)
-pHistory = tk.Checkbutton(pIntelligence_Frame, text = "History")
+pHistory = tk.Checkbutton(pIntelligence_Frame, text = "History", variable=HistoryCB, command=historyProfButton)
 pHistory.grid(row=2, column=1, sticky="W")
 pHistory_Num = tk.Entry(pIntelligence_Frame, width=2)
 pHistory_Num.grid(row=2, column=2, sticky="E", padx=15)
-pInvestigation = tk.Checkbutton(pIntelligence_Frame, text = "Investigation")
+pInvestigation = tk.Checkbutton(pIntelligence_Frame, text = "Investigation", variable=InvestigationCB, command=investigationProfButton)
 pInvestigation.grid(row=3, column=1, sticky="W")
 pInvestigation_Num = tk.Entry(pIntelligence_Frame, width=2)
 pInvestigation_Num.grid(row=3, column=2, sticky="E", padx=15)
-pNature = tk.Checkbutton(pIntelligence_Frame, text = "Nature")
+pNature = tk.Checkbutton(pIntelligence_Frame, text = "Nature", variable=NatureCB, command=natureProfButton)
 pNature.grid(row=4, column=1, sticky="W")
 pNature_Num = tk.Entry(pIntelligence_Frame, width=2)
 pNature_Num.grid(row=4, column=2, sticky="E", padx=15)
-pReligion = tk.Checkbutton(pIntelligence_Frame, text = "Religion")
+pReligion = tk.Checkbutton(pIntelligence_Frame, text = "Religion", variable=ReligionCB, command=religionProfButton)
 pReligion.grid(row=5, column=1, sticky="W")
 pReligion_Num = tk.Entry(pIntelligence_Frame, width=2)
 pReligion_Num.grid(row=5, column=2, sticky="E", padx=15)
@@ -349,27 +696,27 @@ pRollw.grid(row=4, column=0, padx=5, pady=5, sticky="news")
 pWis_input = tk.Entry(pWisdom_Frame, font=("", 64), width=2)
 pWis_input.grid(row=0, column=0, rowspan=4, padx=5)
 
-pWis_ST = tk.Checkbutton(pWisdom_Frame, text = "Saving Throw")
+pWis_ST = tk.Checkbutton(pWisdom_Frame, text = "Saving Throw", variable=WisSavingThrowCB, command=wisProfButton)
 pWis_ST.grid(row=0, column=1, sticky="W")
 pWis_ST_Num = tk.Entry(pWisdom_Frame, width=2)
 pWis_ST_Num.grid(row=0, column=2, sticky="W", padx=(0,10))
-pAnimal_Handling = tk.Checkbutton(pWisdom_Frame, text = "Animal Handling")
+pAnimal_Handling = tk.Checkbutton(pWisdom_Frame, text = "Animal Handling", variable=AnimalHandlingCB, command=ahProfButton)
 pAnimal_Handling.grid(row=1, column=1, sticky="W")
 pAnimal_Handling_Num = tk.Entry(pWisdom_Frame, width=2)
 pAnimal_Handling_Num.grid(row=1, column=2, sticky="W")
-pInsight = tk.Checkbutton(pWisdom_Frame, text = "Insight")
+pInsight = tk.Checkbutton(pWisdom_Frame, text = "Insight", variable=InsightCB, command=insightProfButton)
 pInsight.grid(row=2, column=1, sticky="W")
 pInsight_Num = tk.Entry(pWisdom_Frame, width=2)
 pInsight_Num.grid(row=2, column=2, sticky="W")
-pMedicine = tk.Checkbutton(pWisdom_Frame, text = "Medicine")
+pMedicine = tk.Checkbutton(pWisdom_Frame, text = "Medicine", variable=MedicineCB, command=medicineProfButton)
 pMedicine.grid(row=3, column=1, sticky="W")
 pMedicine_Num = tk.Entry(pWisdom_Frame, width=2)
 pMedicine_Num.grid(row=3, column=2, sticky="W")
-pPerception = tk.Checkbutton(pWisdom_Frame, text = "Perception")
+pPerception = tk.Checkbutton(pWisdom_Frame, text = "Perception", variable=PerceptionCB, command=perceptionProfButton)
 pPerception.grid(row=4, column=1, sticky="W")
 pPerception_Num = tk.Entry(pWisdom_Frame, width=2)
 pPerception_Num.grid(row=4, column=2, sticky="W")
-pSurvival = tk.Checkbutton(pWisdom_Frame, text = "Survival")
+pSurvival = tk.Checkbutton(pWisdom_Frame, text = "Survival", variable=SurvivalCB, command=survivalProfButton)
 pSurvival.grid(row=5, column=1, sticky="W")
 pSurvival_Num = tk.Entry(pWisdom_Frame, width=2)
 pSurvival_Num.grid(row=5, column=2, sticky="W")
@@ -385,23 +732,23 @@ pRollc.grid(row=4, column=0, pady=(5), padx=5, sticky="news")
 pChr_input = tk.Entry(pCharisma_Frame, font=("", 64), width=2)
 pChr_input.grid(row=0, column=0, rowspan=4, padx=5)
 
-pChr_ST = tk.Checkbutton(pCharisma_Frame, text = "Saving Throw")
+pChr_ST = tk.Checkbutton(pCharisma_Frame, text = "Saving Throw", variable=ChrSavingThrowCB, command=chrProfButton)
 pChr_ST.grid(row=0, column=1, sticky="W")
 pChr_ST_Num = tk.Entry(pCharisma_Frame, width=2)
 pChr_ST_Num.grid(row=0, column=2, sticky="E", padx=15)
-pDeception = tk.Checkbutton(pCharisma_Frame, text = "Deception")
+pDeception = tk.Checkbutton(pCharisma_Frame, text = "Deception", variable=DeceptionCB, command=deceptionProfButton)
 pDeception.grid(row=1, column=1, sticky="W")
 pDeception_Num = tk.Entry(pCharisma_Frame, width=2)
 pDeception_Num.grid(row=1, column=2, sticky="E", padx=15)
-pIntimidation = tk.Checkbutton(pCharisma_Frame, text = "Intimidation")
+pIntimidation = tk.Checkbutton(pCharisma_Frame, text = "Intimidation", variable=IntimidationCB, command=intimidationProfButton)
 pIntimidation.grid(row=2, column=1, sticky="W")
 pIntimidation_Num = tk.Entry(pCharisma_Frame, width=2)
 pIntimidation_Num.grid(row=2, column=2, sticky="E", padx=15)
-pPerformance = tk.Checkbutton(pCharisma_Frame, text = "Performance")
+pPerformance = tk.Checkbutton(pCharisma_Frame, text = "Performance", variable=PerformanceCB, command=performanceProfButton)
 pPerformance.grid(row=3, column=1, sticky="W")
 pPerformance_Num = tk.Entry(pCharisma_Frame, width=2)
 pPerformance_Num.grid(row=3, column=2, sticky="E", padx=15)
-pPersuasion = tk.Checkbutton(pCharisma_Frame, text = "Persuasion")
+pPersuasion = tk.Checkbutton(pCharisma_Frame, text = "Persuasion",variable=PersuasionCB, command=persuasionProfButton)
 pPersuasion.grid(row=4, column=1, sticky="W")
 pPersuasion_Num = tk.Entry(pCharisma_Frame, width=2)
 pPersuasion_Num.grid(row=4, column=2, sticky="E", padx=15)
@@ -501,20 +848,20 @@ ds_Frame.grid(row=1, column=1, padx=5, pady=(0,5))
 
 success_Label = tk.Label(ds_Frame, text="Successes")
 success_Label.grid(row=0, column=0)
-success_1 = tk.Checkbutton(ds_Frame)
+success_1 = tk.Checkbutton(ds_Frame, variable=dSave1)
 success_1.grid(row=0, column=1, padx=5)
-success_2 = tk.Checkbutton(ds_Frame)
+success_2 = tk.Checkbutton(ds_Frame, variable=dSave2)
 success_2.grid(row=0, column=2, padx=5)
-success_3 = tk.Checkbutton(ds_Frame)
+success_3 = tk.Checkbutton(ds_Frame, variable=dSave3)
 success_3.grid(row=0, column=3, padx=5)
 
 failure_Label = tk.Label(ds_Frame, text="Failures")
 failure_Label.grid(row=1, column=0)
-failure_1 = tk.Checkbutton(ds_Frame)
+failure_1 = tk.Checkbutton(ds_Frame, variable=dFail1)
 failure_1.grid(row=1, column=1, padx=5)
-failure_2 = tk.Checkbutton(ds_Frame)
+failure_2 = tk.Checkbutton(ds_Frame, variable=dFail2)
 failure_2.grid(row=1, column=2, padx=5)
-failure_3 = tk.Checkbutton(ds_Frame)
+failure_3 = tk.Checkbutton(ds_Frame, variable=dFail3)
 failure_3.grid(row=1, column=3, padx=5)
 
 death_save_Label = tk.Label(ds_Frame, text="Death Saves")
@@ -639,7 +986,5 @@ opl_Traits_text.pack()
 
 
 openInfoFile()
-statButtonChecked()
-
 
 window.mainloop()
