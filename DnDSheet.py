@@ -490,8 +490,10 @@ def persuasionProfButton():
         pPersuasion_Num.delete(0, tk.END)
         pPersuasion_Num.insert(tk.END, isNotProficient)
 
-
-
+def acFormula():
+    pAC_input.delete(0, tk.END)
+    newAC_Number = (int(ACdexModifier_input.get())+(int(ACarmor_input.get())+(int(ACshield_input.get()))+(int(ACMisc_input.get()))))
+    pAC_input.insert(tk.END, newAC_Number)
 
 
 window = tk.Tk()
@@ -798,6 +800,9 @@ ACMisc = tk.Label(ac_i_s_Frame, text="Misc.")
 ACMisc.grid(row=0, column=8)
 ACMisc_input = tk.Entry(ac_i_s_Frame, width=2)
 ACMisc_input.grid(row=1, column=8)
+
+acCalculateButton = tk.Button(ac_i_s_Frame, text="Calculate", command=acFormula)
+acCalculateButton.grid(row=1, column=1, columnspan=8, sticky="wse")
 
 pInitiative = tk.Label(ac_i_s_Frame, text="Initiative")
 pInitiative.grid(row=0, column=9, padx=(160, 0))
