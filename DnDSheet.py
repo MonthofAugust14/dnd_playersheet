@@ -526,6 +526,16 @@ def twentyone_check(roll_output, roll_output_wa):
             nat1_text = tk.Label(nat1_window, text="You Rolled a Natural 1!", font=("", 100))
             nat1_text.pack()    
 
+def twentyone_check_init(roll_output):
+    if(roll_output == 20):
+        nat20_window = tk.Toplevel()
+        nat20_text = tk.Label(nat20_window, text="You Rolled a Natural 20!", font=("", 100))
+        nat20_text.pack()
+    elif(roll_output == 1):
+        nat1_window = tk.Toplevel()
+        nat1_text = tk.Label(nat1_window, text="You Rolled a Natural 1!", font=("", 100))
+        nat1_text.pack()
+
 def strRoll_window():
 
     def sst_roll_calculations():
@@ -1191,6 +1201,31 @@ def attack_3():
     results_wa = tk.Entry(roll_frame, font=("", 64), width=2, border=10)
     results_wa.grid(row=2, column=3, rowspan=2)    
 
+def initiative_button():
+
+    def initiative_calc():
+            results.delete(0, tk.END)
+            roll_output = int(ran.randint(1,20))
+            roll_output_insert = (int(pInitiative_input.get()) + roll_output)
+            results.insert(tk.END, roll_output_insert)
+            twentyone_check_init(roll_output)
+    
+    advantageCD = tk.IntVar()
+
+    roll_window = tk.Toplevel()
+    roll_window.title("Attack")
+    
+    roll_frame = tk.Frame(roll_window, padx=20, pady=20)
+    roll_frame.pack()
+
+    roll_question = tk.Label(roll_frame,text="Initiative Roll", font=("", 32), padx=10, pady=30)
+    roll_question.pack()
+    results = tk.Entry(roll_frame, font=("", 64), width=2, border=10)
+    results.pack()
+
+    initiative_calc()
+
+
 
 root = tk.Tk()
 root.title("Character Sheet")
@@ -1518,7 +1553,7 @@ ACMisc_input.grid(row=1, column=8)
 acCalculateButton = tk.Button(ac_i_s_Frame, text="Calculate", command=acFormula)
 acCalculateButton.grid(row=1, column=1, columnspan=8, sticky="wse")
 
-pInitiative = tk.Label(ac_i_s_Frame, text="Initiative")
+pInitiative = tk.Button(ac_i_s_Frame, text="Initiative", command=initiative_button)
 pInitiative.grid(row=0, column=9, padx=(160, 0))
 pInitiative_input = tk.Entry(ac_i_s_Frame, font=("", 40), width=2)
 pInitiative_input.grid(row=1, column=9, padx=(160, 0))
