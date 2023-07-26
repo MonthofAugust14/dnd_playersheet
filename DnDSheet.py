@@ -578,7 +578,7 @@ def strRoll_window():
     athletics_button.grid(row=3, column=0, sticky="ew")
     results = tk.Entry(roll_frame, font=("", 64), width=2, border=10)
     results.grid(row=2, column=2, rowspan=2)
-    prof_question = tk.Checkbutton(roll_frame, text="Advantage?", variable=advantageCD)
+    prof_question = tk.Checkbutton(roll_frame, text="Advantage", variable=advantageCD)
     prof_question.grid(row=1, column=3)
     results_wa = tk.Entry(roll_frame, font=("", 64), width=2, border=10)
     results_wa.grid(row=2, column=3, rowspan=2)
@@ -673,7 +673,7 @@ def dexRoll_window():
     SoH_button.grid(row=4, column=0, sticky="ew")
     stealth_button = tk.Button(roll_frame, command=stealth_roll_calculations, text="Stealth", font=("", 16), padx=10, pady=5)
     stealth_button.grid(row=5, column=0, sticky="ew")
-    prof_question = tk.Checkbutton(roll_frame, text="Advantage?", variable=advantageCD)
+    prof_question = tk.Checkbutton(roll_frame, text="Advantage", variable=advantageCD)
     prof_question.grid(row=1, column=3)
     results_wa = tk.Entry(roll_frame, font=("", 64), width=2, border=10)
     results_wa.grid(row=2, column=3, rowspan=2) 
@@ -711,7 +711,7 @@ def conRoll_window():
     con_saving_throw_button.grid(row=2, column=0, sticky="ew")
     results = tk.Entry(roll_frame, font=("", 64), width=2, border=10)
     results.grid(row=2, column=2, rowspan=2)
-    prof_question = tk.Checkbutton(roll_frame, text="Advantage?", variable=advantageCD)
+    prof_question = tk.Checkbutton(roll_frame, text="Advantage", variable=advantageCD)
     prof_question.grid(row=1, column=3)
     results_wa = tk.Entry(roll_frame, font=("", 64), width=2, border=10)
     results_wa.grid(row=2, column=3, rowspan=2)
@@ -844,7 +844,7 @@ def intRoll_window():
     nature_button.grid(row=6, column=0, sticky="ew")  
     religion_button = tk.Button(roll_frame, command=religion_roll_calculations, text="Religion", font=("", 16), padx=10, pady=5)
     religion_button.grid(row=7, column=0, sticky="ew")  
-    prof_question = tk.Checkbutton(roll_frame, text="Advantage?", variable=advantageCD)
+    prof_question = tk.Checkbutton(roll_frame, text="Advantage", variable=advantageCD)
     prof_question.grid(row=1, column=3)
     results_wa = tk.Entry(roll_frame, font=("", 64), width=2, border=10)
     results_wa.grid(row=2, column=3, rowspan=2)
@@ -970,7 +970,7 @@ def wisRoll_window():
     perception_button.grid(row=6, column=0, sticky="ew")  
     survival_button = tk.Button(roll_frame, command=survival_roll_calculations, text="Survival", font=("", 16), padx=10, pady=5)
     survival_button.grid(row=7, column=0, sticky="ew") 
-    prof_question = tk.Checkbutton(roll_frame, text="Advantage?", variable=advantageCD)
+    prof_question = tk.Checkbutton(roll_frame, text="Advantage", variable=advantageCD)
     prof_question.grid(row=1, column=3)
     results_wa = tk.Entry(roll_frame, font=("", 64), width=2, border=10)
     results_wa.grid(row=2, column=3, rowspan=2)
@@ -1078,12 +1078,118 @@ def chrRoll_window():
     performance_button.grid(row=5, column=0, sticky="ew")  
     persuasion_button = tk.Button(roll_frame, command=persuasion_roll_calculations, text="Persuasion", font=("", 16), padx=10, pady=5)
     persuasion_button.grid(row=6, column=0, sticky="ew")
-    prof_question = tk.Checkbutton(roll_frame, text="Advantage?", variable=advantageCD)
+    prof_question = tk.Checkbutton(roll_frame, text="Advantage", variable=advantageCD)
     prof_question.grid(row=1, column=3)
     results_wa = tk.Entry(roll_frame, font=("", 64), width=2, border=10)
     results_wa.grid(row=2, column=3, rowspan=2)
 
+def attack_1():
+    def attack_1_calc():
+        if(advantageCD.get() == 1):
+            results.delete(0, tk.END), results_wa.delete(0, tk.END)
+            roll_output = int(ran.randint(1,20))
+            roll_output_wa = int(ran.randint(1,20))
+            roll_output_insert = (int(pWeapon1AB_Num.get()) + roll_output)
+            roll_output_insert_wa = (int(pWeapon1AB_Num.get()) + roll_output_wa)
+            results.insert(tk.END, roll_output_insert), results_wa.insert(tk.END, roll_output_insert_wa)
+            twentyone_check(roll_output, roll_output_wa)        
+        else:
+            results.delete(0, tk.END), results_wa.delete(0, tk.END)
+            roll_output = int(ran.randint(1,20))
+            roll_output_insert = (int(pWeapon1AB_Num.get()) + roll_output)
+            results.insert(tk.END, roll_output_insert)
+            twentyone_check(roll_output)
+    
+    advantageCD = tk.IntVar()
 
+    roll_window = tk.Toplevel()
+    roll_window.title("Attack")
+    
+    roll_frame = tk.Frame(roll_window, padx=20, pady=20)
+    roll_frame.pack()
+
+    roll_question = tk.Label(roll_frame,text=pWeapon1_Num.get(), font=("", 32), padx=10, pady=30)
+    roll_question.grid(row=0, column=0, columnspan=4)
+    roll_to_hit_button = tk.Button(roll_frame,command=attack_1_calc , text="Roll to Hit", font=("", 16), padx=10, pady=5)
+    roll_to_hit_button.grid(row=2, column=0, sticky="ew", padx=20)
+    results = tk.Entry(roll_frame, font=("", 64), width=2, border=10)
+    results.grid(row=2, column=2, rowspan=2)
+    prof_question = tk.Checkbutton(roll_frame, text="Advantage", variable=advantageCD)
+    prof_question.grid(row=1, column=3)
+    results_wa = tk.Entry(roll_frame, font=("", 64), width=2, border=10)
+    results_wa.grid(row=2, column=3, rowspan=2)    
+
+def attack_2():
+    def attack_2_calc():
+        if(advantageCD.get() == 1):
+            results.delete(0, tk.END), results_wa.delete(0, tk.END)
+            roll_output = int(ran.randint(1,20))
+            roll_output_wa = int(ran.randint(1,20))
+            roll_output_insert = (int(pWeapon2AB_Num.get()) + roll_output)
+            roll_output_insert_wa = (int(pWeapon2AB_Num.get()) + roll_output_wa)
+            results.insert(tk.END, roll_output_insert), results_wa.insert(tk.END, roll_output_insert_wa)
+            twentyone_check(roll_output, roll_output_wa)        
+        else:
+            results.delete(0, tk.END), results_wa.delete(0, tk.END)
+            roll_output = int(ran.randint(1,20))
+            roll_output_insert = (int(pWeapon2AB_Num.get()) + roll_output)
+            results.insert(tk.END, roll_output_insert)
+            twentyone_check(roll_output)
+    
+    advantageCD = tk.IntVar()
+
+    roll_window = tk.Toplevel()
+    roll_window.title("Attack")
+    
+    roll_frame = tk.Frame(roll_window, padx=20, pady=20)
+    roll_frame.pack()
+
+    roll_question = tk.Label(roll_frame,text=pWeapon2_Num.get(), font=("", 32), padx=10, pady=30)
+    roll_question.grid(row=0, column=0, columnspan=4)
+    roll_to_hit_button = tk.Button(roll_frame,command=attack_2_calc , text="Roll to Hit", font=("", 16), padx=10, pady=5)
+    roll_to_hit_button.grid(row=2, column=0, sticky="ew", padx=20)
+    results = tk.Entry(roll_frame, font=("", 64), width=2, border=10)
+    results.grid(row=2, column=2, rowspan=2)
+    prof_question = tk.Checkbutton(roll_frame, text="Advantage", variable=advantageCD)
+    prof_question.grid(row=1, column=3)
+    results_wa = tk.Entry(roll_frame, font=("", 64), width=2, border=10)
+    results_wa.grid(row=2, column=3, rowspan=2)    
+
+def attack_3():
+    def attack_3_calc():
+        if(advantageCD.get() == 1):
+            results.delete(0, tk.END), results_wa.delete(0, tk.END)
+            roll_output = int(ran.randint(1,20))
+            roll_output_wa = int(ran.randint(1,20))
+            roll_output_insert = (int(pWeapon3AB_Num.get()) + roll_output)
+            roll_output_insert_wa = (int(pWeapon3AB_Num.get()) + roll_output_wa)
+            results.insert(tk.END, roll_output_insert), results_wa.insert(tk.END, roll_output_insert_wa)
+            twentyone_check(roll_output, roll_output_wa)        
+        else:
+            results.delete(0, tk.END), results_wa.delete(0, tk.END)
+            roll_output = int(ran.randint(1,20))
+            roll_output_insert = (int(pWeapon3AB_Num.get()) + roll_output)
+            results.insert(tk.END, roll_output_insert)
+            twentyone_check(roll_output)
+    
+    advantageCD = tk.IntVar()
+
+    roll_window = tk.Toplevel()
+    roll_window.title("Attack")
+    
+    roll_frame = tk.Frame(roll_window, padx=20, pady=20)
+    roll_frame.pack()
+
+    roll_question = tk.Label(roll_frame,text=pWeapon3_Num.get(), font=("", 32), padx=10, pady=30)
+    roll_question.grid(row=0, column=0, columnspan=4)
+    roll_to_hit_button = tk.Button(roll_frame,command=attack_3_calc , text="Roll to Hit", font=("", 16), padx=10, pady=5)
+    roll_to_hit_button.grid(row=2, column=0, sticky="ew", padx=20)
+    results = tk.Entry(roll_frame, font=("", 64), width=2, border=10)
+    results.grid(row=2, column=2, rowspan=2)
+    prof_question = tk.Checkbutton(roll_frame, text="Advantage", variable=advantageCD)
+    prof_question.grid(row=1, column=3)
+    results_wa = tk.Entry(roll_frame, font=("", 64), width=2, border=10)
+    results_wa.grid(row=2, column=3, rowspan=2)    
 
 
 root = tk.Tk()
@@ -1515,7 +1621,7 @@ pWeapon1Damage.grid(row=1, column=3, padx=(5))
 pWeapon1Damage_Num = tk.Entry(pWeapon1Damage, width=7)
 pWeapon1Damage_Num.pack(padx=5, pady=5)
 
-pWeapon1AttackButton = tk.Button(playerWeapon1, text="Attack")
+pWeapon1AttackButton = tk.Button(playerWeapon1, text="Attack", command=attack_1)
 pWeapon1AttackButton.grid(row=2, column=0, columnspan=5, padx=5, pady=(0,5), sticky="news")
 
 
@@ -1544,7 +1650,7 @@ pWeapon2Damage.grid(row=1, column=3, padx=(5))
 pWeapon2Damage_Num = tk.Entry(pWeapon2Damage, width=7)
 pWeapon2Damage_Num.pack(padx=5, pady=5)
 
-pWeapon2AttackButton = tk.Button(playerWeapon2, text="Attack")
+pWeapon2AttackButton = tk.Button(playerWeapon2, text="Attack", command=attack_2)
 pWeapon2AttackButton.grid(row=4, column=0, columnspan=5, padx=5, pady=(0,5), sticky="news")
 
 
@@ -1573,7 +1679,7 @@ pWeapon3Damage.grid(row=1, column=3, padx=(5))
 pWeapon3Damage_Num = tk.Entry(pWeapon3Damage, width=7)
 pWeapon3Damage_Num.pack(padx=5, pady=5)
 
-pWeapon3AttackButton = tk.Button(playerWeapon3, text="Attack")
+pWeapon3AttackButton = tk.Button(playerWeapon3, text="Attack", command=attack_3)
 pWeapon3AttackButton.grid(row=2, column=0, columnspan=5, padx=5, pady=(0,5), sticky="news")
 
 ########################################################################################################################
