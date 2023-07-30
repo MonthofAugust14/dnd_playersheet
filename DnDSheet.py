@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 import json
 import random as ran
+from ast import literal_eval
 
 
 
@@ -137,7 +138,38 @@ def openInfoFile():
             failure_2.select()
         if(cInfo_d['DeathFail3']==1):
             failure_3.select()
-    
+        spellcasting_ability.insert(tk.END, cInfo_d['SpellcastingAbility'])
+        spell_save_dc.insert(tk.END, cInfo_d['SpellSaveDC'])
+        spell_attack_bonus.insert(tk.END, cInfo_d['SpellAttackBonus'])
+        first_slots = cInfo_d['FirstLevelSpellSlotsCount']
+        second_slots = cInfo_d['SecondLevelSpellSlotsCount']
+        third_slots = cInfo_d['ThirdLevelSpellSlotsCount']
+        fourth_slots = cInfo_d['FourthLevelSpellSlotsCount']
+        fifth_slots = cInfo_d['FifthLevelSpellSlotsCount']
+        sixth_slots = cInfo_d['SixthLevelSpellSlotsCount']
+        seventh_slots = cInfo_d['SeventhLevelSpellSlotsCount']
+        eigth_slots = cInfo_d['EigthLevelSpellSlotsCount']
+        ninth_slots = cInfo_d['NinthLevelSpellSlotsCount']
+
+        for _ in range(first_slots):
+            add_slots_1()
+        for _ in range(second_slots):
+            add_slots_2()
+        for _ in range(third_slots):
+            add_slots_3()
+        for _ in range(fourth_slots):
+            add_slots_4()
+        for _ in range(fifth_slots):
+            add_slots_5()
+        for _ in range(sixth_slots):
+            add_slots_6()
+        for _ in range(seventh_slots):
+            add_slots_7()
+        for _ in range(eigth_slots):
+            add_slots_8()
+        for _ in range(ninth_slots):
+            add_slots_9()
+
 
     except json.JSONDecodeError:
         savePlayerSheet()
@@ -245,6 +277,19 @@ def savePlayerSheet():
                    DeathFail1=dFail1.get(),
                    DeathFail2=dFail2.get(),
                    DeathFail3=dFail3.get(),
+                   SpellcastingAbility=spellcasting_ability.get(),
+                   SpellSaveDC=spell_save_dc.get(),
+                   SpellAttackBonus=spell_attack_bonus.get(),
+                   FirstLevelSpellSlotsCount=first_slots,
+                   SecondLevelSpellSlotsCount=second_slots,
+                   ThirdLevelSpellSlotsCount=third_slots,
+                   FourthLevelSpellSlotsCount=fourth_slots,
+                   FifthLevelSpellSlotsCount=fifth_slots,
+                   SixthLevelSpellSlotsCount=sixth_slots,
+                   SeventhLevelSpellSlotsCount=seventh_slots,
+                   EigthLevelSpellSlotsCount=eigth_slots,
+                   NinthLevelSpellSlotsCount=ninth_slots,
+
     )   
     
     json.dump(cInfo_d, open('info.json', 'w'), indent=2)
@@ -1236,12 +1281,12 @@ notebook = ttk.Notebook(root)
 
 
 dndPlayerSheet_tab = tk.Label(notebook, background="grey")
-dndSpellSheet = tk.Label(notebook)
-dndMonsterSheet = tk.Label(notebook)
+dndSpellSheet_tab = tk.Label(notebook)
+dndMonsterSheet_tab = tk.Label(notebook)
 
 notebook.add(dndPlayerSheet_tab, text = "Playercard")
-notebook.add(dndSpellSheet, text = "Spell Sheet")
-notebook.add(dndMonsterSheet, text = "Monster Data")
+notebook.add(dndSpellSheet_tab, text = "Spell Sheet")
+notebook.add(dndMonsterSheet_tab, text = "Monster Data")
 
 notebook.pack(expand=True, fill="both")
 
@@ -1263,7 +1308,6 @@ dndPlayerSheet = tk.Frame(dndPlayerSheet_Canvas)
 dndPlayerSheet_Canvas.create_window((0,0), window=dndPlayerSheet, anchor="nw")
 ########################################################################################################################
 
-########################################################################################################################
 #Checkbox variables
 characterInspirationCB = tk.IntVar()
 strSavingThrowCB = tk.IntVar()
@@ -1741,6 +1785,381 @@ opl_Traits = tk.LabelFrame(dndPlayerSheet, text="Other Proficiencies / Languages
 opl_Traits.grid(row=4, column=2, padx=(0,5), pady=(0,5), sticky="news")
 opl_Traits_text = tk.Text(opl_Traits, width=40, height=18)
 opl_Traits_text.pack()
+
+########################################################################################################################
+########################################################################################################################
+#Creation of the Characters spellbook
+########################################################################################################################
+########################################################################################################################
+#General info frame
+spell_generalInfo_frame = tk.Frame(dndSpellSheet_tab)
+spell_generalInfo_frame.pack()
+
+spellcasting_ability = tk.Entry(spell_generalInfo_frame, font=("", 40), width=2, borderwidth=10)
+spellcasting_ability.grid(row=0, column=0, padx=80, pady=(20, 0))
+spellcasting_ability_label = tk.Label(spell_generalInfo_frame, text="Spellcasting Ability", font=("", 16))
+spellcasting_ability_label.grid(row=1, column=0)
+
+spell_save_dc = tk.Entry(spell_generalInfo_frame, font=("", 40), width=2, borderwidth=10)
+spell_save_dc.grid(row=0, column=1, padx=80, pady=(20, 0))
+spell_save_dc_label = tk.Label(spell_generalInfo_frame, text="Spell Save DC", font=("", 16))
+spell_save_dc_label.grid(row=1, column=1)
+
+spell_attack_bonus = tk.Entry(spell_generalInfo_frame, font=("", 40), width=2, borderwidth=10)
+spell_attack_bonus.grid(row=0, column=2, padx=80, pady=(20, 0))
+spell_attack_bonus_label = tk.Label(spell_generalInfo_frame, text="Spell Attack Bonus", font=("", 16))
+spell_attack_bonus_label.grid(row=1, column=2)
+
+########################################################################################################################
+
+dynamic_slots_1 = {}
+dynamic_slots_2 = []
+dynamic_slots_3 = []
+dynamic_slots_4 = []
+dynamic_slots_5 = []
+dynamic_slots_6 = []
+dynamic_slots_7 = []
+dynamic_slots_8 = []
+dynamic_slots_9 = []
+
+first_slots = 0
+second_slots = 0
+third_slots = 0
+fourth_slots = 0
+fifth_slots = 0
+sixth_slots = 0
+seventh_slots = 0
+eigth_slots = 0
+ninth_slots = 0
+
+def add_slots_1():
+    global first_slots
+    if first_slots != 6:
+        button = tk.Checkbutton(button_frames1, border=5, variable=first_slots)
+        dynamic_slots_1.update(button)
+        button.pack(side=tk.LEFT)
+        first_slots = first_slots + 1
+    
+def remove_slots_1():
+    global first_slots
+    dynamic_slots_1[first_slots - 1].destroy()
+    del dynamic_slots_1[-1]
+    first_slots = first_slots - 1
+
+def add_slots_2():
+    global second_slots
+    if second_slots != 6:
+        button = tk.Checkbutton(button_frames2, border=5, variable=(7 + second_slots))
+        dynamic_slots_2.append(button)
+        button.pack(side=tk.LEFT)
+        second_slots = second_slots + 1
+    
+def remove_slots_2():
+    global second_slots
+    dynamic_slots_2[second_slots - 1].destroy()
+    del dynamic_slots_2[-1]
+    second_slots = second_slots - 1
+
+def add_slots_3():
+    global third_slots
+    if third_slots != 6:
+        button = tk.Checkbutton(button_frames3, border=5, variable=(14 + third_slots))
+        dynamic_slots_3.append(button)
+        button.pack(side=tk.LEFT)
+        third_slots = third_slots + 1
+    
+def remove_slots_3():
+    global third_slots
+    dynamic_slots_3[third_slots - 1].destroy()
+    del dynamic_slots_3[-1]
+    third_slots = third_slots - 1
+
+def add_slots_4():
+    global fourth_slots
+    if fourth_slots != 6:
+        button = tk.Checkbutton(button_frames4, border=5, variable=(21 + fourth_slots))
+        dynamic_slots_4.append(button)
+        button.pack(side=tk.LEFT)
+        fourth_slots = fourth_slots + 1
+    
+def remove_slots_4():
+    global fourth_slots
+    dynamic_slots_4[fourth_slots - 1].destroy()
+    del dynamic_slots_4[-1]
+    fourth_slots = fourth_slots - 1
+
+def add_slots_5():
+    global fifth_slots
+    if fifth_slots != 6:
+        button = tk.Checkbutton(button_frames5, border=5, variable=(28 + fifth_slots))
+        dynamic_slots_5.append(button)
+        button.pack(side=tk.LEFT)
+        fifth_slots = fifth_slots + 1
+    
+def remove_slots_5():
+    global fifth_slots
+    dynamic_slots_5[fifth_slots - 1].destroy()
+    del dynamic_slots_5[-1]
+    fifth_slots = fifth_slots - 1
+
+def add_slots_6():
+    global sixth_slots
+    if sixth_slots != 6:
+        button = tk.Checkbutton(button_frames6, border=5, variable=(35 + sixth_slots))
+        dynamic_slots_6.append(button)
+        button.pack(side=tk.LEFT)
+        sixth_slots = sixth_slots + 1
+    
+def remove_slots_6():
+    global sixth_slots
+    dynamic_slots_6[sixth_slots - 1].destroy()
+    del dynamic_slots_6[-1]
+    sixth_slots = sixth_slots - 1
+
+def add_slots_7():
+    global seventh_slots
+    if seventh_slots != 6:
+        button = tk.Checkbutton(button_frames7, border=5, variable=(42 + seventh_slots))
+        dynamic_slots_7.append(button)
+        button.pack(side=tk.LEFT)
+        seventh_slots = seventh_slots + 1
+    
+def remove_slots_7():
+    global seventh_slots
+    dynamic_slots_7[seventh_slots - 1].destroy()
+    del dynamic_slots_7[-1]
+    seventh_slots = seventh_slots - 1
+
+def add_slots_8():
+    global eigth_slots
+    if eigth_slots != 6:
+        button = tk.Checkbutton(button_frames8, border=5, variable=(49 + eigth_slots))
+        dynamic_slots_8.append(button)
+        button.pack(side=tk.LEFT)
+        eigth_slots = eigth_slots + 1
+    
+def remove_slots_8():
+    global eigth_slots
+    dynamic_slots_8[eigth_slots - 1].destroy()
+    del dynamic_slots_8[-1]
+    eigth_slots = eigth_slots - 1
+
+def add_slots_9():
+    global ninth_slots
+    if ninth_slots != 6:
+        button = tk.Checkbutton(button_frames9, border=5, variable=(56 + ninth_slots))
+        dynamic_slots_9.append(button)
+        button.pack(side=tk.LEFT)
+        ninth_slots = ninth_slots + 1
+    
+def remove_slots_9():
+    global ninth_slots
+    dynamic_slots_9[ninth_slots - 1].destroy()
+    del dynamic_slots_9[-1]
+    ninth_slots = ninth_slots - 1
+
+
+def cancel_addspell():
+    add_spell_window.destroy()
+
+def save_addspell():
+    spellname_list = []
+    spelldesc_list = []
+    spelldamage_list = []
+
+    spellname_list.append(spell_name_input.get())
+    spelldesc_list.append(spell_description_input.get(1.0, "end-1c"))
+    spelldamage_list.append(spell_damage_input.get())
+
+
+    newspell_frame = tk.Frame(spellbook_frame)
+    newspell_frame.pack()
+    spell_name_saved = tk.Label(newspell_frame, text="Name")
+    spell_name_saved.grid(row=0, column=0, sticky="w", padx=10)
+    spell_name_input_saved = tk.Entry(newspell_frame, width=22)
+    spell_name_input_saved.insert(tk.END, spell_name_input.get())
+    spell_name_input_saved["state"] = tk.DISABLED
+    spell_name_input_saved.grid(row=1, column=0, sticky="new", padx=10)
+    spell_description_saved = tk.Label(newspell_frame, text="Description")
+    spell_description_saved.grid(row=0, column=1, sticky="w")
+    spell_description_input_saved = tk.Text(newspell_frame, width=60, height=20)
+    spell_description_input_saved.insert(tk.END, spell_description_input.get(1.0, "end-1c"))
+    spell_description_input_saved["state"] = tk.DISABLED
+    spell_description_input_saved.grid(row=1, column=1)
+    spell_damage_saved = tk.Label(newspell_frame, text="Damage")
+    spell_damage_saved.grid(row=0, column=2, sticky="w", padx=10)
+    spell_damage_input_saved = tk.Entry(newspell_frame, width=21)
+    spell_damage_input_saved.insert(tk.END, spell_damage_input.get())
+    spell_damage_input_saved["state"] = tk.DISABLED
+    spell_damage_input_saved.grid(row=1, column=2, sticky="new", padx=10)
+
+
+
+def add_spell_toplevel():
+    global add_spell_window, spell_name_input, spell_description_input, spell_damage_input
+    add_spell_window = tk.Toplevel()
+    spell_name = tk.Label(add_spell_window, text="Name")
+    spell_name.grid(row=0, column=0, sticky="w", padx=10)
+    spell_name_input = tk.Entry(add_spell_window)
+    spell_name_input.grid(row=1, column=0, sticky="new", padx=10)
+    spell_description = tk.Label(add_spell_window, text="Description")
+    spell_description.grid(row=0, column=1, sticky="w")
+    spell_description_input = tk.Text(add_spell_window, height=5, width=60)
+    spell_description_input.grid(row=1, column=1)
+    spell_damage = tk.Label(add_spell_window, text="Damage")
+    spell_damage.grid(row=0, column=2, sticky="w", padx=10)
+    spell_damage_input = tk.Entry(add_spell_window)
+    spell_damage_input.grid(row=1, column=2, sticky="new", padx=10)
+    addspell_cancel_button = tk.Button(add_spell_window, text="Cancel", command=cancel_addspell)
+    addspell_cancel_button.grid(row=2, column=0, sticky="news", padx=10, pady=10)
+    addspell_save_button = tk.Button(add_spell_window, text="Save", command=save_addspell)
+    addspell_save_button.grid(row=2, column=2, sticky="news", padx=10, pady=10)
+
+
+
+#Spell slots frame
+spell_slots_frame = tk.LabelFrame(dndSpellSheet_tab, text="Spell Slots", font=("", 20))
+spell_slots_frame.pack()
+
+first_level_frame = tk.Frame(spell_slots_frame)
+first_level_frame.grid(row=0, column=0, padx=20)
+first_level_label = tk.Label(first_level_frame, text="1st Level", font=("", 16))
+first_level_label.grid(row=0, column=0, padx=20)
+add_slot1 = tk.Button(first_level_frame, text=">", command=add_slots_1, width=5)
+add_slot1.grid(row=0, column=2)
+remove_slot1 = tk.Button(first_level_frame, text="<", command=remove_slots_1, width=5)
+remove_slot1.grid(row=0, column=1)
+button_frames1 = tk.Frame(first_level_frame)
+button_frames1.grid(row=2, column=0, columnspan=6)
+
+second_level_frame = tk.Frame(spell_slots_frame)
+second_level_frame.grid(row=1, column=0, padx=20)
+second_level_label = tk.Label(second_level_frame, text="2nd Level", font=("", 16))
+second_level_label.grid(row=0, column=0, padx=20)
+add_slot2 = tk.Button(second_level_frame, text=">", command=add_slots_2, width=5)
+add_slot2.grid(row=0, column=2)
+remove_slot2 = tk.Button(second_level_frame, text="<", command=remove_slots_2, width=5)
+remove_slot2.grid(row=0, column=1)
+button_frames2 = tk.Frame(second_level_frame)
+button_frames2.grid(row=2, column=0, columnspan=6)
+
+third_level_frame = tk.Frame(spell_slots_frame)
+third_level_frame.grid(row=2, column=0, padx=20)
+third_level_label = tk.Label(third_level_frame, text="3rd Level", font=("", 16))
+third_level_label.grid(row=0, column=0, padx=20)
+add_slot3 = tk.Button(third_level_frame, text=">", command=add_slots_3, width=5)
+add_slot3.grid(row=0, column=2)
+remove_slot3 = tk.Button(third_level_frame, text="<", command=remove_slots_3, width=5)
+remove_slot3.grid(row=0, column=1)
+button_frames3 = tk.Frame(third_level_frame)
+button_frames3.grid(row=2, column=0, columnspan=6)
+
+fourth_level_frame = tk.Frame(spell_slots_frame)
+fourth_level_frame.grid(row=0, column=1, padx=20)
+fourth_level_label = tk.Label(fourth_level_frame, text="4th Level", font=("", 16))
+fourth_level_label.grid(row=0, column=0, padx=20)
+add_slot4 = tk.Button(fourth_level_frame, text=">", command=add_slots_4, width=5)
+add_slot4.grid(row=0, column=2)
+remove_slot4 = tk.Button(fourth_level_frame, text="<", command=remove_slots_4, width=5)
+remove_slot4.grid(row=0, column=1)
+button_frames4 = tk.Frame(fourth_level_frame)
+button_frames4.grid(row=2, column=0, columnspan=6)
+
+fifth_level_frame = tk.Frame(spell_slots_frame)
+fifth_level_frame.grid(row=1, column=1, padx=20)
+fifth_level_label = tk.Label(fifth_level_frame, text="5th Level", font=("", 16))
+fifth_level_label.grid(row=0, column=0, padx=20)
+add_slot5 = tk.Button(fifth_level_frame, text=">", command=add_slots_5, width=5)
+add_slot5.grid(row=0, column=2)
+remove_slot5 = tk.Button(fifth_level_frame, text="<", command=remove_slots_5, width=5)
+remove_slot5.grid(row=0, column=1)
+button_frames5 = tk.Frame(fifth_level_frame)
+button_frames5.grid(row=2, column=0, columnspan=6)
+
+sixth_level_frame = tk.Frame(spell_slots_frame)
+sixth_level_frame.grid(row=2, column=1, padx=20)
+sixth_level_label = tk.Label(sixth_level_frame, text="6th Level", font=("", 16))
+sixth_level_label.grid(row=0, column=0, padx=20)
+add_slot6 = tk.Button(sixth_level_frame, text=">", command=add_slots_6, width=5)
+add_slot6.grid(row=0, column=2)
+remove_slot6 = tk.Button(sixth_level_frame, text="<", command=remove_slots_6, width=5)
+remove_slot6.grid(row=0, column=1)
+button_frames6 = tk.Frame(sixth_level_frame)
+button_frames6.grid(row=2, column=0, columnspan=6)
+
+seventh_level_frame = tk.Frame(spell_slots_frame)
+seventh_level_frame.grid(row=0, column=2, padx=20)
+seventh_level_label = tk.Label(seventh_level_frame, text="7th Level", font=("", 16))
+seventh_level_label.grid(row=0, column=0, padx=20)
+add_slot7 = tk.Button(seventh_level_frame, text=">", command=add_slots_7, width=5)
+add_slot7.grid(row=0, column=2)
+remove_slot7 = tk.Button(seventh_level_frame, text="<", command=remove_slots_7, width=5)
+remove_slot7.grid(row=0, column=1)
+button_frames7 = tk.Frame(seventh_level_frame)
+button_frames7.grid(row=2, column=0, columnspan=6)
+
+eigth_level_frame = tk.Frame(spell_slots_frame)
+eigth_level_frame.grid(row=1, column=2, padx=20)
+eigth_level_label = tk.Label(eigth_level_frame, text="8th Level", font=("", 16))
+eigth_level_label.grid(row=0, column=0, padx=20)
+add_slot8 = tk.Button(eigth_level_frame, text=">", command=add_slots_8, width=5)
+add_slot8.grid(row=0, column=2)
+remove_slot8 = tk.Button(eigth_level_frame, text="<", command=remove_slots_8, width=5)
+remove_slot8.grid(row=0, column=1)
+button_frames8 = tk.Frame(eigth_level_frame)
+button_frames8.grid(row=2, column=0, columnspan=6)
+
+ninth_level_frame = tk.Frame(spell_slots_frame)
+ninth_level_frame.grid(row=2, column=2, padx=20)
+ninth_level_label = tk.Label(ninth_level_frame, text="9th Level", font=("", 16))
+ninth_level_label.grid(row=0, column=0, padx=20)
+add_slot9 = tk.Button(ninth_level_frame, text=">", command=add_slots_9, width=5)
+add_slot9.grid(row=0, column=2)
+remove_slots9 = tk.Button(ninth_level_frame, text="<", command=remove_slots_9, width=5)
+remove_slots9.grid(row=0, column=1)
+button_frames9 = tk.Frame(ninth_level_frame)
+button_frames9.grid(row=2, column=0, columnspan=6)
+
+
+########################################################################################################################
+
+#Creation of the scroll bar for the dndSpellSheet_tab
+main_frame = tk.Frame(dndSpellSheet_tab)
+main_frame.pack(fill=tk.BOTH, expand=1)
+dndSpellSheet_Canvas = tk.Canvas(main_frame)
+dndSpellSheet_Canvas.pack(side=tk.LEFT, fill=tk.BOTH, expand=1)
+playersheet_scrollbar = ttk.Scrollbar(main_frame, orient=tk.VERTICAL, command=dndSpellSheet_Canvas.yview)
+playersheet_scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+dndSpellSheet_Canvas.configure(yscrollcommand=playersheet_scrollbar.set)
+dndSpellSheet_Canvas.bind('<Configure>', lambda e:dndSpellSheet_Canvas.configure(scrollregion=dndSpellSheet_Canvas.bbox('all')))
+dndSpellSheet = tk.Frame(dndSpellSheet_Canvas)
+dndSpellSheet_Canvas.create_window((0,0), window=dndSpellSheet, anchor="nw")
+
+########################################################################################################################
+#Save new spell frame
+
+spellbook_frame = tk.LabelFrame(dndSpellSheet, text="Spellbook")
+spellbook_frame.pack(padx=115)
+
+
+
+add_Button = tk.Button(dndSpellSheet, text="Add Spell", command=add_spell_toplevel)
+add_Button.pack()
+
+
+########################################################################################################################
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 openInfoFile()
