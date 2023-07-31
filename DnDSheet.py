@@ -295,246 +295,90 @@ def savePlayerSheet():
     json.dump(cInfo_d, open('info.json', 'w'), indent=2)
 
 
+def add_proficiency_bonus(checkbox:tk.IntVar, entry:tk.Entry):
+    if(checkbox.get()==1):
+        isProficient = (int(entry.get()) + int(pBonus_input.get()))
+        entry.delete(0, tk.END)
+        entry.insert(tk.END, isProficient)
+    else:
+        isNotProficient = (int(entry.get()) - int(pBonus_input.get()))
+        entry.delete(0, tk.END)
+        entry.insert(tk.END, isNotProficient)
+
+
 def strProfButton():
-    if(strSavingThrowCB.get()==1):
-        isProficient = (int(pStr_ST_Num.get()) + int(pBonus_input.get()))
-        pStr_ST_Num.delete(0, tk.END)
-        pStr_ST_Num.insert(tk.END, isProficient)
-    else:
-        isNotProficient = (int(pStr_ST_Num.get()) - int(pBonus_input.get()))
-        pStr_ST_Num.delete(0, tk.END)
-        pStr_ST_Num.insert(tk.END, isNotProficient)
-    
+    add_proficiency_bonus(strSavingThrowCB, pStr_ST_Num)
+
 def athleticsProfButton():
-    if(AthleticsCB.get()==1):
-        isProficient = (int(pAthletics_Num.get()) + int(pBonus_input.get()))
-        pAthletics_Num.delete(0, tk.END)
-        pAthletics_Num.insert(tk.END, isProficient)
-    else:
-        isNotProficient = (int(pAthletics_Num.get()) - int(pBonus_input.get()))
-        pAthletics_Num.delete(0, tk.END)
-        pAthletics_Num.insert(tk.END, isNotProficient)
+    add_proficiency_bonus(AthleticsCB, pAthletics_Num)
 
 def dexProfButton():
-    if(dexSavingThrowCB.get()==1):
-        isProficient = (int(pDex_ST_Num.get()) + int(pBonus_input.get()))
-        pDex_ST_Num.delete(0, tk.END)
-        pDex_ST_Num.insert(tk.END, isProficient)
-    else:
-        isNotProficient = (int(pDex_ST_Num.get()) - int(pBonus_input.get()))
-        pDex_ST_Num.delete(0, tk.END)
-        pDex_ST_Num.insert(tk.END, isNotProficient)
+    add_proficiency_bonus(dexSavingThrowCB, pDex_ST_Num)
 
 def acrobaticsProfButton():
-    if(AcrobaticsCB.get()==1):
-        isProficient = (int(pAcrobatics_Num.get()) + int(pBonus_input.get()))
-        pAcrobatics_Num.delete(0, tk.END)
-        pAcrobatics_Num.insert(tk.END, isProficient)
-    else:
-        isNotProficient = (int(pAcrobatics_Num.get()) - int(pBonus_input.get()))
-        pAcrobatics_Num.delete(0, tk.END)
-        pAcrobatics_Num.insert(tk.END, isNotProficient)
+    add_proficiency_bonus(AcrobaticsCB, pAcrobatics_Num)
 
-def slightofHandProfButton():
-    if(SlightofHandCB.get()==1):
-        isProficient = (int(pSlight_of_Hand_Num.get()) + int(pBonus_input.get()))
-        pSlight_of_Hand_Num.delete(0, tk.END)
-        pSlight_of_Hand_Num.insert(tk.END, isProficient)
-    else:
-        isNotProficient = (int(pSlight_of_Hand_Num.get()) - int(pBonus_input.get()))
-        pSlight_of_Hand_Num.delete(0, tk.END)
-        pSlight_of_Hand_Num.insert(tk.END, isNotProficient)
+def slightofHandProfButton():  
+    add_proficiency_bonus(SlightofHandCB, pSlight_of_Hand_Num)
 
 def stealthProfButton():
-    if(StealthCB.get()==1):
-        isProficient = (int(pStealth_Num.get()) + int(pBonus_input.get()))
-        pStealth_Num.delete(0, tk.END)
-        pStealth_Num.insert(tk.END, isProficient)
-    else:
-        isNotProficient = (int(pStealth_Num.get()) - int(pBonus_input.get()))
-        pStealth_Num.delete(0, tk.END)
-        pStealth_Num.insert(tk.END, isNotProficient)
+    add_proficiency_bonus(StealthCB, pStealth_Num)
 
 def conProfButton():
-    if(ConSavingThrowCB.get()==1):
-        isProficient = (int(pCon_ST_Num.get()) + int(pBonus_input.get()))
-        pCon_ST_Num.delete(0, tk.END)
-        pCon_ST_Num.insert(tk.END, isProficient)
-    else:
-        isNotProficient = (int(pCon_ST_Num.get()) - int(pBonus_input.get()))
-        pCon_ST_Num.delete(0, tk.END)
-        pCon_ST_Num.insert(tk.END, isNotProficient)
+    add_proficiency_bonus(ConSavingThrowCB, pCon_ST_Num)
 
 def intProfButton():
-    if(IntSavingThrowCB.get()==1):
-        isProficient = (int(pInt_ST_Num.get()) + int(pBonus_input.get()))
-        pInt_ST_Num.delete(0, tk.END)
-        pInt_ST_Num.insert(tk.END, isProficient)
-    else:
-        isNotProficient = (int(pInt_ST_Num.get()) - int(pBonus_input.get()))
-        pInt_ST_Num.delete(0, tk.END)
-        pInt_ST_Num.insert(tk.END, isNotProficient)
+    add_proficiency_bonus(IntSavingThrowCB, pInt_ST_Num)
 
 def arcanaProfButton():
-    if(ArcanaCB.get()==1):
-        isProficient = (int(pArcana_Num.get()) + int(pBonus_input.get()))
-        pArcana_Num.delete(0, tk.END)
-        pArcana_Num.insert(tk.END, isProficient)
-    else:
-        isNotProficient = (int(pArcana_Num.get()) - int(pBonus_input.get()))
-        pArcana_Num.delete(0, tk.END)
-        pArcana_Num.insert(tk.END, isNotProficient)
+    add_proficiency_bonus(ArcanaCB, pArcana)
 
 def historyProfButton():
-    if(HistoryCB.get()==1):
-        isProficient = (int(pHistory_Num.get()) + int(pBonus_input.get()))
-        pHistory_Num.delete(0, tk.END)
-        pHistory_Num.insert(tk.END, isProficient)
-    else:
-        isNotProficient = (int(pHistory_Num.get()) - int(pBonus_input.get()))
-        pHistory_Num.delete(0, tk.END)
-        pHistory_Num.insert(tk.END, isNotProficient)
+    add_proficiency_bonus(HistoryCB, pHistory_Num)
 
 def investigationProfButton():
-    if(InvestigationCB.get()==1):
-        isProficient = (int(pInvestigation_Num.get()) + int(pBonus_input.get()))
-        pInvestigation_Num.delete(0, tk.END)
-        pInvestigation_Num.insert(tk.END, isProficient)
-    else:
-        isNotProficient = (int(pInvestigation_Num.get()) - int(pBonus_input.get()))
-        pInvestigation_Num.delete(0, tk.END)
-        pInvestigation_Num.insert(tk.END, isNotProficient)
+    add_proficiency_bonus(InvestigationCB, pInvestigation_Num)
 
 def natureProfButton():
-    if(NatureCB.get()==1):
-        isProficient = (int(pNature_Num.get()) + int(pBonus_input.get()))
-        pNature_Num.delete(0, tk.END)
-        pNature_Num.insert(tk.END, isProficient)
-    else:
-        isNotProficient = (int(pNature_Num.get()) - int(pBonus_input.get()))
-        pNature_Num.delete(0, tk.END)
-        pNature_Num.insert(tk.END, isNotProficient)
+    add_proficiency_bonus(NatureCB, pNature_Num)
 
 def religionProfButton():
-    if(ReligionCB.get()==1):
-        isProficient = (int(pReligion_Num.get()) + int(pBonus_input.get()))
-        pReligion_Num.delete(0, tk.END)
-        pReligion_Num.insert(tk.END, isProficient)
-    else:
-        isNotProficient = (int(pReligion_Num.get()) - int(pBonus_input.get()))
-        pReligion_Num.delete(0, tk.END)
-        pReligion_Num.insert(tk.END, isNotProficient)
+    add_proficiency_bonus(ReligionCB, pReligion_Num)
 
 def wisProfButton():
-    if(WisSavingThrowCB.get()==1):
-        isProficient = (int(pWis_ST_Num.get()) + int(pBonus_input.get()))
-        pWis_ST_Num.delete(0, tk.END)
-        pWis_ST_Num.insert(tk.END, isProficient)
-    else:
-        isNotProficient = (int(pWis_ST_Num.get()) - int(pBonus_input.get()))
-        pWis_ST_Num.delete(0, tk.END)
-        pWis_ST_Num.insert(tk.END, isNotProficient)
+    add_proficiency_bonus(WisSavingThrowCB, pWis_ST_Num)
 
 def ahProfButton():
-    if(AnimalHandlingCB.get()==1):
-        isProficient = (int(pAnimal_Handling_Num.get()) + int(pBonus_input.get()))
-        pAnimal_Handling_Num.delete(0, tk.END)
-        pAnimal_Handling_Num.insert(tk.END, isProficient)
-    else:
-        isNotProficient = (int(pAnimal_Handling_Num.get()) - int(pBonus_input.get()))
-        pAnimal_Handling_Num.delete(0, tk.END)
-        pAnimal_Handling_Num.insert(tk.END, isNotProficient)
+    add_proficiency_bonus(AnimalHandlingCB, pAnimal_Handling_Num)
 
 def insightProfButton():
-    if(InsightCB.get()==1):
-        isProficient = (int(pInsight_Num.get()) + int(pBonus_input.get()))
-        pInsight_Num.delete(0, tk.END)
-        pInsight_Num.insert(tk.END, isProficient)
-    else:
-        isNotProficient = (int(pInsight_Num.get()) - int(pBonus_input.get()))
-        pInsight_Num.delete(0, tk.END)
-        pInsight_Num.insert(tk.END, isNotProficient)
+    add_proficiency_bonus(InsightCB, pInsight_Num)
 
 def medicineProfButton():
-    if(MedicineCB.get()==1):
-        isProficient = (int(pMedicine_Num.get()) + int(pBonus_input.get()))
-        pMedicine_Num.delete(0, tk.END)
-        pMedicine_Num.insert(tk.END, isProficient)
-    else:
-        isNotProficient = (int(pMedicine_Num.get()) - int(pBonus_input.get()))
-        pMedicine_Num.delete(0, tk.END)
-        pMedicine_Num.insert(tk.END, isNotProficient)
+    add_proficiency_bonus(MedicineCB, pMedicine_Num)
 
 def perceptionProfButton():
-    if(PerceptionCB.get()==1):
-        isProficient = (int(pPerception_Num.get()) + int(pBonus_input.get()))
-        pPerception_Num.delete(0, tk.END)
-        pPerception_Num.insert(tk.END, isProficient)
-    else:
-        isNotProficient = (int(pPerception_Num.get()) - int(pBonus_input.get()))
-        pPerception_Num.delete(0, tk.END)
-        pPerception_Num.insert(tk.END, isNotProficient)
+    add_proficiency_bonus(PerceptionCB, pPerception_Num)
 
 def survivalProfButton():
-    if(SurvivalCB.get()==1):
-        isProficient = (int(pSurvival_Num.get()) + int(pBonus_input.get()))
-        pSurvival_Num.delete(0, tk.END)
-        pSurvival_Num.insert(tk.END, isProficient)
-    else:
-        isNotProficient = (int(pSurvival_Num.get()) - int(pBonus_input.get()))
-        pSurvival_Num.delete(0, tk.END)
-        pSurvival_Num.insert(tk.END, isNotProficient)
+    add_proficiency_bonus(SurvivalCB, pSurvival_Num)
 
 def chrProfButton():
-    if(ChrSavingThrowCB.get()==1):
-        isProficient = (int(pChr_ST_Num.get()) + int(pBonus_input.get()))
-        pChr_ST_Num.delete(0, tk.END)
-        pChr_ST_Num.insert(tk.END, isProficient)
-    else:
-        isNotProficient = (int(pChr_ST_Num.get()) - int(pBonus_input.get()))
-        pChr_ST_Num.delete(0, tk.END)
-        pChr_ST_Num.insert(tk.END, isNotProficient)
+    add_proficiency_bonus(ChrSavingThrowCB, pChr_ST_Num)
 
 def deceptionProfButton():
-    if(DeceptionCB.get()==1):
-        isProficient = (int(pDeception_Num.get()) + int(pBonus_input.get()))
-        pDeception_Num.delete(0, tk.END)
-        pDeception_Num.insert(tk.END, isProficient)
-    else:
-        isNotProficient = (int(pDeception_Num.get()) - int(pBonus_input.get()))
-        pDeception_Num.delete(0, tk.END)
-        pDeception_Num.insert(tk.END, isNotProficient)
+    add_proficiency_bonus(DeceptionCB, pDeception_Num)
 
 def intimidationProfButton():
-    if(IntimidationCB.get()==1):
-        isProficient = (int(pIntimidation_Num.get()) + int(pBonus_input.get()))
-        pIntimidation_Num.delete(0, tk.END)
-        pIntimidation_Num.insert(tk.END, isProficient)
-    else:
-        isNotProficient = (int(pIntimidation_Num.get()) - int(pBonus_input.get()))
-        pIntimidation_Num.delete(0, tk.END)
-        pIntimidation_Num.insert(tk.END, isNotProficient)
+    add_proficiency_bonus(IntimidationCB, pIntimidation_Num)
 
 def performanceProfButton():
-    if(PerformanceCB.get()==1):
-        isProficient = (int(pPerformance_Num.get()) + int(pBonus_input.get()))
-        pPerformance_Num.delete(0, tk.END)
-        pPerformance_Num.insert(tk.END, isProficient)
-    else:
-        isNotProficient = (int(pPerformance_Num.get()) - int(pBonus_input.get()))
-        pPerformance_Num.delete(0, tk.END)
-        pPerformance_Num.insert(tk.END, isNotProficient)
+    add_proficiency_bonus(PerformanceCB, pPerformance_Num)
 
 def persuasionProfButton():
-    if(PersuasionCB.get()==1):
-        isProficient = (int(pPersuasion_Num.get()) + int(pBonus_input.get()))
-        pPersuasion_Num.delete(0, tk.END)
-        pPersuasion_Num.insert(tk.END, isProficient)
-    else:
-        isNotProficient = (int(pPersuasion_Num.get()) - int(pBonus_input.get()))
-        pPersuasion_Num.delete(0, tk.END)
-        pPersuasion_Num.insert(tk.END, isNotProficient)
+    add_proficiency_bonus(PersuasionCB, pPersuasion_Num)
 
+        
 def acFormula():
     pAC_input.delete(0, tk.END)
     newAC_Number = (int(ACdexModifier_input.get())+(int(ACarmor_input.get())+(int(ACshield_input.get()))+(int(ACMisc_input.get()))))
@@ -1812,7 +1656,7 @@ spell_attack_bonus_label.grid(row=1, column=2)
 
 ########################################################################################################################
 
-dynamic_slots_1 = {}
+dynamic_slots_1 = []
 dynamic_slots_2 = []
 dynamic_slots_3 = []
 dynamic_slots_4 = []
@@ -1836,7 +1680,7 @@ def add_slots_1():
     global first_slots
     if first_slots != 6:
         button = tk.Checkbutton(button_frames1, border=5, variable=first_slots)
-        dynamic_slots_1.update(button)
+        dynamic_slots_1.append(button)
         button.pack(side=tk.LEFT)
         first_slots = first_slots + 1
     
@@ -1963,6 +1807,37 @@ def cancel_addspell():
     add_spell_window.destroy()
 
 def save_addspell():
+    spelldict = {}
+    spelldict["Cantrips"] = [
+        {
+            "Name":"Fire Bolt",
+            "Description":"~~",
+            "Damage":"3d6"
+        },
+        {
+            "Name":"Ice Bolt",
+            "Description":"~~",
+            "Damage":"14"
+        }
+    ]
+    spelldict["1st Level Spells"] = [
+        {
+            "Name":"Fire Ball",
+            "Description":"~~",
+            "Damage":"444"
+        },
+        {
+            "Name":"Ice Storm",
+            "Description":"~~",
+            "Damage":"22"
+        }
+    ]
+
+
+
+
+
+
     spellname_list = []
     spelldesc_list = []
     spelldamage_list = []
@@ -1971,8 +1846,58 @@ def save_addspell():
     spelldesc_list.append(spell_description_input.get(1.0, "end-1c"))
     spelldamage_list.append(spell_damage_input.get())
 
+    if (spelllevel_listbox.get(spelllevel_listbox.curselection())=="Cantrips"):
+        addspell_frame_cantrip()
+    if (spelllevel_listbox.get(spelllevel_listbox.curselection())=="1st Level"):
+        addspell_frame_first()
 
-    newspell_frame = tk.Frame(spellbook_frame)
+
+def addspell_frame_cantrip():
+    newspell_frame = tk.Frame(cantrips_frame)
+    newspell_frame.pack()
+    spell_name_saved = tk.Label(newspell_frame, text="Name")
+    spell_name_saved.grid(row=0, column=0, sticky="w", padx=10)
+    spell_name_input_saved = tk.Entry(newspell_frame, width=22)
+    spell_name_input_saved.insert(tk.END, spell_name_input.get())
+    spell_name_input_saved["state"] = tk.DISABLED
+    spell_name_input_saved.grid(row=1, column=0, sticky="new", padx=10)
+    spell_description_saved = tk.Label(newspell_frame, text="Description")
+    spell_description_saved.grid(row=0, column=1, sticky="w")
+    spell_description_input_saved = tk.Text(newspell_frame, width=60, height=20)
+    spell_description_input_saved.insert(tk.END, spell_description_input.get(1.0, "end-1c"))
+    spell_description_input_saved["state"] = tk.DISABLED
+    spell_description_input_saved.grid(row=1, column=1)
+    spell_damage_saved = tk.Label(newspell_frame, text="Damage")
+    spell_damage_saved.grid(row=0, column=2, sticky="w", padx=10)
+    spell_damage_input_saved = tk.Entry(newspell_frame, width=21)
+    spell_damage_input_saved.insert(tk.END, spell_damage_input.get())
+    spell_damage_input_saved["state"] = tk.DISABLED
+    spell_damage_input_saved.grid(row=1, column=2, sticky="new", padx=10)
+
+def addspell_frame_first():
+    newspell_frame = tk.Frame(firstlevel_frame)
+    newspell_frame.pack()
+    spell_name_saved = tk.Label(newspell_frame, text="Name")
+    spell_name_saved.grid(row=0, column=0, sticky="w", padx=10)
+    spell_name_input_saved = tk.Entry(newspell_frame, width=22)
+    spell_name_input_saved.insert(tk.END, spell_name_input.get())
+    spell_name_input_saved["state"] = tk.DISABLED
+    spell_name_input_saved.grid(row=1, column=0, sticky="new", padx=10)
+    spell_description_saved = tk.Label(newspell_frame, text="Description")
+    spell_description_saved.grid(row=0, column=1, sticky="w")
+    spell_description_input_saved = tk.Text(newspell_frame, width=60, height=20)
+    spell_description_input_saved.insert(tk.END, spell_description_input.get(1.0, "end-1c"))
+    spell_description_input_saved["state"] = tk.DISABLED
+    spell_description_input_saved.grid(row=1, column=1)
+    spell_damage_saved = tk.Label(newspell_frame, text="Damage")
+    spell_damage_saved.grid(row=0, column=2, sticky="w", padx=10)
+    spell_damage_input_saved = tk.Entry(newspell_frame, width=21)
+    spell_damage_input_saved.insert(tk.END, spell_damage_input.get())
+    spell_damage_input_saved["state"] = tk.DISABLED
+    spell_damage_input_saved.grid(row=1, column=2, sticky="new", padx=10)
+
+def addspell_frame_second():
+    newspell_frame = tk.Frame(secondlevel_frame)
     newspell_frame.pack()
     spell_name_saved = tk.Label(newspell_frame, text="Name")
     spell_name_saved.grid(row=0, column=0, sticky="w", padx=10)
@@ -1994,9 +1919,8 @@ def save_addspell():
     spell_damage_input_saved.grid(row=1, column=2, sticky="new", padx=10)
 
 
-
 def add_spell_toplevel():
-    global add_spell_window, spell_name_input, spell_description_input, spell_damage_input
+    global add_spell_window, spell_name_input, spell_description_input, spell_damage_input, spelllevel_listbox
     add_spell_window = tk.Toplevel()
     spell_name = tk.Label(add_spell_window, text="Name")
     spell_name.grid(row=0, column=0, sticky="w", padx=10)
@@ -2005,15 +1929,28 @@ def add_spell_toplevel():
     spell_description = tk.Label(add_spell_window, text="Description")
     spell_description.grid(row=0, column=1, sticky="w")
     spell_description_input = tk.Text(add_spell_window, height=5, width=60)
-    spell_description_input.grid(row=1, column=1)
+    spell_description_input.grid(row=1, column=1, rowspan=2, sticky="n")
     spell_damage = tk.Label(add_spell_window, text="Damage")
     spell_damage.grid(row=0, column=2, sticky="w", padx=10)
     spell_damage_input = tk.Entry(add_spell_window)
     spell_damage_input.grid(row=1, column=2, sticky="new", padx=10)
     addspell_cancel_button = tk.Button(add_spell_window, text="Cancel", command=cancel_addspell)
-    addspell_cancel_button.grid(row=2, column=0, sticky="news", padx=10, pady=10)
+    addspell_cancel_button.grid(row=3, column=0, sticky="news", padx=10, pady=10)
     addspell_save_button = tk.Button(add_spell_window, text="Save", command=save_addspell)
-    addspell_save_button.grid(row=2, column=2, sticky="news", padx=10, pady=10)
+    addspell_save_button.grid(row=3, column=2, sticky="news", padx=10, pady=10)
+    spelllevel_listbox = tk.Listbox(add_spell_window)
+    spelllevel_listbox.config(height=spelllevel_listbox.size())
+    spelllevel_listbox.grid(row=2, column=2)
+    spelllevel_listbox.insert(1, "Cantrips")
+    spelllevel_listbox.insert(2, "1st Level")
+    spelllevel_listbox.insert(3, "2nd Level")
+    spelllevel_listbox.insert(4, "3rd Level")
+    spelllevel_listbox.insert(5, "4th Level")
+    spelllevel_listbox.insert(6, "5th Level")
+    spelllevel_listbox.insert(7, "6th Level")
+    spelllevel_listbox.insert(8, "7th Level")
+    spelllevel_listbox.insert(9, "8th Level")
+    spelllevel_listbox.insert(10, "9th Level")
 
 
 
@@ -2141,6 +2078,55 @@ dndSpellSheet_Canvas.create_window((0,0), window=dndSpellSheet, anchor="nw")
 spellbook_frame = tk.LabelFrame(dndSpellSheet, text="Spellbook")
 spellbook_frame.pack(padx=115)
 
+cantrips_frame = tk.Frame(spellbook_frame)
+cantrips_frame.pack()
+cantrips_tab = tk.Button(cantrips_frame, text="Cantrips", padx=372)
+cantrips_tab.pack()
+
+firstlevel_frame = tk.Frame(spellbook_frame)
+firstlevel_frame.pack()
+firstlevel_tab = tk.Button(firstlevel_frame, text="1st Level Spells", padx=355)
+firstlevel_tab.pack()
+
+secondlevel_frame = tk.Frame(spellbook_frame)
+secondlevel_frame.pack()
+secondlevel_tab = tk.Button(secondlevel_frame, text="2nd Level Spells", padx=353)
+secondlevel_tab.pack()
+
+thirdlevel_frame = tk.Frame(spellbook_frame)
+thirdlevel_frame.pack()
+thirdlevel_tab = tk.Button(thirdlevel_frame, text="3rd Level Spells", padx=355)
+thirdlevel_tab.pack()
+
+fourthlevel_frame = tk.Frame(spellbook_frame)
+fourthlevel_frame.pack()
+fourthlevel_tab = tk.Button(fourthlevel_frame, text="4th Level Spells", padx=355)
+fourthlevel_tab.pack()
+
+fifthlevel_frame = tk.Frame(spellbook_frame)
+fifthlevel_frame.pack()
+fifthlevel_tab = tk.Button(fifthlevel_frame, text="5th Level Spells", padx=355)
+fifthlevel_tab.pack()
+
+sixthlevel_frame = tk.Frame(spellbook_frame)
+sixthlevel_frame.pack()
+sixthlevel_tab = tk.Button(sixthlevel_frame, text="6th Level Spells", padx=355)
+sixthlevel_tab.pack()
+
+seventhlevel_frame = tk.Frame(spellbook_frame)
+seventhlevel_frame.pack()
+seventhlevel_tab = tk.Button(seventhlevel_frame, text="7th Level Spells", padx=355)
+seventhlevel_tab.pack()
+
+eigthlevel_frame = tk.Frame(spellbook_frame)
+eigthlevel_frame.pack()
+eigthlevel_tab = tk.Button(eigthlevel_frame, text="8th Level Spells", padx=355)
+eigthlevel_tab.pack()
+
+ninthlevel_frame = tk.Frame(spellbook_frame)
+ninthlevel_frame.pack()
+ninthlevel_tab = tk.Button(ninthlevel_frame, text="9th Level Spells", padx=355)
+ninthlevel_tab.pack()
 
 
 add_Button = tk.Button(dndSpellSheet, text="Add Spell", command=add_spell_toplevel)
