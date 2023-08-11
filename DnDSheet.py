@@ -289,7 +289,6 @@ def savePlayerSheet():
                    SeventhLevelSpellSlotsCount=seventh_slots,
                    EigthLevelSpellSlotsCount=eigth_slots,
                    NinthLevelSpellSlotsCount=ninth_slots,
-
     )   
     
     json.dump(cInfo_d, open('info.json', 'w'), indent=2)
@@ -1676,6 +1675,22 @@ seventh_slots = 0
 eigth_slots = 0
 ninth_slots = 0
 
+spelldict = {}
+spelldict["Cantrips"] = []
+spelldict["1st Level Spells"] = []
+spelldict["2nd Level Spells"] = []
+spelldict["3rd Level Spells"] = []
+spelldict["4th Level Spells"] = []
+spelldict["5th Level Spells"] = []
+spelldict["6th Level Spells"] = []
+spelldict["7th Level Spells"] = []
+spelldict["8th Level Spells"] = []
+spelldict["9th Level spells"] = []
+
+
+def saveSpellSheet():
+    json.dump(spelldict, open('spells.json', 'w'), indent=2)
+
 def add_slots_1():
     global first_slots
     if first_slots != 6:
@@ -1802,102 +1817,105 @@ def remove_slots_9():
     del dynamic_slots_9[-1]
     ninth_slots = ninth_slots - 1
 
-
 def cancel_addspell():
     add_spell_window.destroy()
 
 def save_addspell():
-    spelldict = {}
-    spelldict["Cantrips"] = [
-        {
-            "Name":"Fire Bolt",
-            "Description":"~~",
-            "Damage":"3d6"
-        },
-        {
-            "Name":"Ice Bolt",
-            "Description":"~~",
-            "Damage":"14"
-        }
-    ]
-    spelldict["1st Level Spells"] = [
-        {
-            "Name":"Fire Ball",
-            "Description":"~~",
-            "Damage":"444"
-        },
-        {
-            "Name":"Ice Storm",
-            "Description":"~~",
-            "Damage":"22"
-        }
-    ]
-
-
-
-
-
-
-    spellname_list = []
-    spelldesc_list = []
-    spelldamage_list = []
-
-    spellname_list.append(spell_name_input.get())
-    spelldesc_list.append(spell_description_input.get(1.0, "end-1c"))
-    spelldamage_list.append(spell_damage_input.get())
 
     if (spelllevel_listbox.get(spelllevel_listbox.curselection())=="Cantrips"):
-        addspell_frame_cantrip()
+        addspell_frame(cantrips_frame)
+        spelldict["Cantrips"].append(
+            {
+                "Name":spell_name_input.get(),
+                "Description":spell_description_input.get(1.0, "end-1c"),
+                "Damage":spell_damage_input.get()
+            })
+        saveSpellSheet()
     if (spelllevel_listbox.get(spelllevel_listbox.curselection())=="1st Level"):
-        addspell_frame_first()
+        addspell_frame(firstlevel_frame)
+        spelldict["1st Level Spells"].append(
+            {
+                "Name":spell_name_input.get(),
+                "Description":spell_description_input.get(1.0, "end-1c"),
+                "Damage":spell_damage_input.get()
+            })
+        saveSpellSheet()
+    if (spelllevel_listbox.get(spelllevel_listbox.curselection())=="2nd Level"):
+        addspell_frame(secondlevel_frame)
+        spelldict["2nd Level Spells"].append(
+            {
+                "Name":spell_name_input.get(),
+                "Description":spell_description_input.get(1.0, "end-1c"),
+                "Damage":spell_damage_input.get()
+            })
+        saveSpellSheet()
+    if (spelllevel_listbox.get(spelllevel_listbox.curselection())=="3rd Level"):
+        addspell_frame(thirdlevel_frame)
+        spelldict["3rd Level Spells"].append(
+            {
+                "Name":spell_name_input.get(),
+                "Description":spell_description_input.get(1.0, "end-1c"),
+                "Damage":spell_damage_input.get()
+            })
+        saveSpellSheet()
+    if (spelllevel_listbox.get(spelllevel_listbox.curselection())=="4th Level"):
+        addspell_frame(fourthlevel_frame)
+        spelldict["4th Level Spells"].append(
+            {
+                "Name":spell_name_input.get(),
+                "Description":spell_description_input.get(1.0, "end-1c"),
+                "Damage":spell_damage_input.get()
+            })
+        saveSpellSheet()
+    if (spelllevel_listbox.get(spelllevel_listbox.curselection())=="5th Level"):
+        addspell_frame(fifthlevel_frame)
+        spelldict["5th Level Spells"].append(
+            {
+                "Name":spell_name_input.get(),
+                "Description":spell_description_input.get(1.0, "end-1c"),
+                "Damage":spell_damage_input.get()
+            })
+        saveSpellSheet()
+    if (spelllevel_listbox.get(spelllevel_listbox.curselection())=="6th Level"):
+        addspell_frame(sixthlevel_frame)
+        spelldict["6th Level Spells"].append(
+            {
+                "Name":spell_name_input.get(),
+                "Description":spell_description_input.get(1.0, "end-1c"),
+                "Damage":spell_damage_input.get()
+            })
+        saveSpellSheet()
+    if (spelllevel_listbox.get(spelllevel_listbox.curselection())=="7th Level"):
+        addspell_frame(seventhlevel_frame)
+        spelldict["7th Level Spells"].append(
+            {
+                "Name":spell_name_input.get(),
+                "Description":spell_description_input.get(1.0, "end-1c"),
+                "Damage":spell_damage_input.get()
+            })
+        saveSpellSheet()
+    if (spelllevel_listbox.get(spelllevel_listbox.curselection())=="8th Level"):
+        addspell_frame(eigthlevel_frame)
+        spelldict["8th Level Spells"].append(
+            {
+                "Name":spell_name_input.get(),
+                "Description":spell_description_input.get(1.0, "end-1c"),
+                "Damage":spell_damage_input.get()
+            })
+        saveSpellSheet()
+    if (spelllevel_listbox.get(spelllevel_listbox.curselection())=="9th Level"):
+        addspell_frame(ninthlevel_frame)
+        spelldict["9th Level spells"].append(
+            {
+                "Name":spell_name_input.get(),
+                "Description":spell_description_input.get(1.0, "end-1c"),
+                "Damage":spell_damage_input.get()
+            })
+        saveSpellSheet()
 
 
-def addspell_frame_cantrip():
-    newspell_frame = tk.Frame(cantrips_frame)
-    newspell_frame.pack()
-    spell_name_saved = tk.Label(newspell_frame, text="Name")
-    spell_name_saved.grid(row=0, column=0, sticky="w", padx=10)
-    spell_name_input_saved = tk.Entry(newspell_frame, width=22)
-    spell_name_input_saved.insert(tk.END, spell_name_input.get())
-    spell_name_input_saved["state"] = tk.DISABLED
-    spell_name_input_saved.grid(row=1, column=0, sticky="new", padx=10)
-    spell_description_saved = tk.Label(newspell_frame, text="Description")
-    spell_description_saved.grid(row=0, column=1, sticky="w")
-    spell_description_input_saved = tk.Text(newspell_frame, width=60, height=20)
-    spell_description_input_saved.insert(tk.END, spell_description_input.get(1.0, "end-1c"))
-    spell_description_input_saved["state"] = tk.DISABLED
-    spell_description_input_saved.grid(row=1, column=1)
-    spell_damage_saved = tk.Label(newspell_frame, text="Damage")
-    spell_damage_saved.grid(row=0, column=2, sticky="w", padx=10)
-    spell_damage_input_saved = tk.Entry(newspell_frame, width=21)
-    spell_damage_input_saved.insert(tk.END, spell_damage_input.get())
-    spell_damage_input_saved["state"] = tk.DISABLED
-    spell_damage_input_saved.grid(row=1, column=2, sticky="new", padx=10)
-
-def addspell_frame_first():
-    newspell_frame = tk.Frame(firstlevel_frame)
-    newspell_frame.pack()
-    spell_name_saved = tk.Label(newspell_frame, text="Name")
-    spell_name_saved.grid(row=0, column=0, sticky="w", padx=10)
-    spell_name_input_saved = tk.Entry(newspell_frame, width=22)
-    spell_name_input_saved.insert(tk.END, spell_name_input.get())
-    spell_name_input_saved["state"] = tk.DISABLED
-    spell_name_input_saved.grid(row=1, column=0, sticky="new", padx=10)
-    spell_description_saved = tk.Label(newspell_frame, text="Description")
-    spell_description_saved.grid(row=0, column=1, sticky="w")
-    spell_description_input_saved = tk.Text(newspell_frame, width=60, height=20)
-    spell_description_input_saved.insert(tk.END, spell_description_input.get(1.0, "end-1c"))
-    spell_description_input_saved["state"] = tk.DISABLED
-    spell_description_input_saved.grid(row=1, column=1)
-    spell_damage_saved = tk.Label(newspell_frame, text="Damage")
-    spell_damage_saved.grid(row=0, column=2, sticky="w", padx=10)
-    spell_damage_input_saved = tk.Entry(newspell_frame, width=21)
-    spell_damage_input_saved.insert(tk.END, spell_damage_input.get())
-    spell_damage_input_saved["state"] = tk.DISABLED
-    spell_damage_input_saved.grid(row=1, column=2, sticky="new", padx=10)
-
-def addspell_frame_second():
-    newspell_frame = tk.Frame(secondlevel_frame)
+def addspell_frame(frame):
+    newspell_frame = tk.Frame(frame)
     newspell_frame.pack()
     spell_name_saved = tk.Label(newspell_frame, text="Name")
     spell_name_saved.grid(row=0, column=0, sticky="w", padx=10)
