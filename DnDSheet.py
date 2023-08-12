@@ -1125,11 +1125,9 @@ notebook = ttk.Notebook(root)
 
 dndPlayerSheet_tab = tk.Label(notebook, background="grey")
 dndSpellSheet_tab = tk.Label(notebook)
-dndMonsterSheet_tab = tk.Label(notebook)
 
 notebook.add(dndPlayerSheet_tab, text = "Playercard")
 notebook.add(dndSpellSheet_tab, text = "Spell Sheet")
-notebook.add(dndMonsterSheet_tab, text = "Monster Data")
 
 notebook.pack(expand=True, fill="both")
 
@@ -1913,6 +1911,37 @@ def save_addspell():
             })
         saveSpellSheet()
 
+def loadSpells():
+    global spelldict
+    s = open("spells.json")
+    spelldict = json.load(s)
+    try:
+        for cantrip in (spelldict["Cantrips"]):
+            loadSpell_frame(cantrips_frame, cantrip["Name"], cantrip["Description"], cantrip["Damage"])
+        for firstlevel in (spelldict["1st Level Spells"]):
+            loadSpell_frame(firstlevel_frame, firstlevel["Name"], firstlevel["Description"], firstlevel["Damage"])
+        for secondlevel in (spelldict["2nd Level Spells"]):
+            loadSpell_frame(secondlevel_frame, secondlevel["Name"], secondlevel["Description"], secondlevel["Damage"])
+        for thirdlevel in (spelldict["3rd Level Spells"]):
+            loadSpell_frame(thirdlevel_frame, thirdlevel["Name"], thirdlevel["Description"], thirdlevel["Damage"])
+        for fourthlevel in (spelldict["4th Level Spells"]):
+            loadSpell_frame(fourthlevel_frame, fourthlevel["Name"], fourthlevel["Description"], fourthlevel["Damage"])
+        for fifthlevel in (spelldict["5th Level Spells"]):
+            loadSpell_frame(fifthlevel_frame, fifthlevel["Name"], fifthlevel["Description"], fifthlevel["Damage"])
+        for sixthlevel in (spelldict["6th Level Spells"]):
+            loadSpell_frame(sixthlevel_frame, sixthlevel["Name"], sixthlevel["Description"], sixthlevel["Damage"])
+        for seventhlevel in (spelldict["7th Level Spells"]):
+            loadSpell_frame(seventhlevel_frame, seventhlevel["Name"], seventhlevel["Description"], seventhlevel["Damage"])
+        for eigthlevel in (spelldict["8th Level Spells"]):
+            loadSpell_frame(eigthlevel_frame, eigthlevel["Name"], eigthlevel["Description"], eigthlevel["Damage"])
+        for ninthlevel in (spelldict["8th Level Spells"]):
+            loadSpell_frame(ninthlevel_frame, ninthlevel["Name"], ninthlevel["Description"], ninthlevel["Damage"])
+    
+    except json.JSONDecodeError:
+        print(json.JSONDecodeError)
+    
+    except KeyError:
+        print(KeyError)
 
 def addspell_frame(frame):
     newspell_frame = tk.Frame(frame)
@@ -1936,6 +1965,27 @@ def addspell_frame(frame):
     spell_damage_input_saved["state"] = tk.DISABLED
     spell_damage_input_saved.grid(row=1, column=2, sticky="new", padx=10)
 
+def loadSpell_frame(frame, spellkeyname, spellkeydisc, spellkeydamage):
+    newspell_frame = tk.Frame(frame)
+    newspell_frame.pack()
+    spell_name_loaded = tk.Label(newspell_frame, text="Name")
+    spell_name_loaded.grid(row=0, column=0, sticky="w", padx=10)
+    spell_name_input_loaded = tk.Entry(newspell_frame, width=22)
+    spell_name_input_loaded.insert(tk.END, spellkeyname)
+    spell_name_input_loaded["state"] = tk.DISABLED
+    spell_name_input_loaded.grid(row=1, column=0, sticky="new", padx=10)
+    spell_description_loaded = tk.Label(newspell_frame, text="Description")
+    spell_description_loaded.grid(row=0, column=1, sticky="w")
+    spell_description_input_loaded = tk.Text(newspell_frame, width=60, height=20)
+    spell_description_input_loaded.insert(tk.END, spellkeydisc)
+    spell_description_input_loaded["state"] = tk.DISABLED
+    spell_description_input_loaded.grid(row=1, column=1)
+    spell_damage_loaded = tk.Label(newspell_frame, text="Damage")
+    spell_damage_loaded.grid(row=0, column=2, sticky="w", padx=10)
+    spell_damage_input_loaded = tk.Entry(newspell_frame, width=21)
+    spell_damage_input_loaded.insert(tk.END, spellkeydamage)
+    spell_damage_input_loaded["state"] = tk.DISABLED
+    spell_damage_input_loaded.grid(row=1, column=2, sticky="new", padx=10)
 
 def add_spell_toplevel():
     global add_spell_window, spell_name_input, spell_description_input, spell_damage_input, spelllevel_listbox
@@ -2167,5 +2217,6 @@ add_Button.pack()
 
 
 openInfoFile()
+loadSpells()
 
 root.mainloop()
